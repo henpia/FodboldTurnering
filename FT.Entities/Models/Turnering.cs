@@ -10,9 +10,9 @@ namespace FT.Entities.Models
     [Table("Turnering")]
     public class Turnering
     {
-        public int TurneringsId { get; set; }
+        public int TurneringId { get; set; }
         public string Navn { get; set; }
-        public ICollection<Hold> Hold { get; set; }
+        public ICollection<Hold> HoldListe { get; set; }
         public ICollection<Runde> Runder { get; set; }
     }
 }

@@ -7,13 +7,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FT.Entities.Models
 {
-    [Table("Runde")]
+    [Table("Runder")]
     public class Runde
     {
         public int RundeId { get; set; }
         public string Betegnelse { get; set; }
         public ICollection<Kamp> Kampe { get; set; }
-        public int TurneringsId { get; set; }
+        public int TurneringId { get; set; }
         public Turnering Turnering { get; set; }
     }
 }
