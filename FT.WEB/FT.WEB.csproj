@@ -147,6 +147,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\HoldListeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TurneringController.cs" />
     <Compile Include="Global.asax.cs">
@@ -198,6 +199,11 @@
     <Content Include="Views\Turnering\Details.cshtml" />
     <Content Include="Views\Turnering\Edit.cshtml" />
     <Content Include="Views\Turnering\Index.cshtml" />
+    <Content Include="Views\HoldListe\Create.cshtml" />
+    <Content Include="Views\HoldListe\Delete.cshtml" />
+    <Content Include="Views\HoldListe\Details.cshtml" />
+    <Content Include="Views\HoldListe\Edit.cshtml" />
+    <Content Include="Views\HoldListe\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

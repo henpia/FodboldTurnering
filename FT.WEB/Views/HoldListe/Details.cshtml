@@ -1,0 +1,42 @@
+﻿@model FT.Entities.Models.Hold
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Hold</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Turnering.Navn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Turnering.Navn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Navn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Navn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DatoForTilmelding)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DatoForTilmelding)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.HoldId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

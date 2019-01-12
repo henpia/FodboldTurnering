@@ -1,0 +1,45 @@
+﻿@model IEnumerable<FT.Entities.Models.Hold>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Turnering.Navn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Navn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DatoForTilmelding)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Turnering.Navn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Navn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DatoForTilmelding)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.HoldId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.HoldId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.HoldId })
+        </td>
+    </tr>
+}
+
+</table>
