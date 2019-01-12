@@ -11,18 +11,18 @@ using FT.Entities.Models;
 
 namespace FT.WEB.Controllers
 {
-    public class HoldListeController : Controller
+    public class HoldController : Controller
     {
         private FodboldTurneringDB db = new FodboldTurneringDB();
 
-        // GET: HoldListe
+        // GET: Hold
         public ActionResult Index()
         {
             var holdListe = db.HoldListe.Include(h => h.Turnering);
             return View(holdListe.ToList());
         }
 
-        // GET: HoldListe/Details/5
+        // GET: Hold/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -37,14 +37,14 @@ namespace FT.WEB.Controllers
             return View(hold);
         }
 
-        // GET: HoldListe/Create
+        // GET: Hold/Create
         public ActionResult Create()
         {
             ViewBag.TurneringId = new SelectList(db.Turneringer, "TurneringId", "Navn");
             return View();
         }
 
-        // POST: HoldListe/Create
+        // POST: Hold/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -62,7 +62,7 @@ namespace FT.WEB.Controllers
             return View(hold);
         }
 
-        // GET: HoldListe/Edit/5
+        // GET: Hold/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -78,7 +78,7 @@ namespace FT.WEB.Controllers
             return View(hold);
         }
 
-        // POST: HoldListe/Edit/5
+        // POST: Hold/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -95,7 +95,7 @@ namespace FT.WEB.Controllers
             return View(hold);
         }
 
-        // GET: HoldListe/Delete/5
+        // GET: Hold/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -110,7 +110,7 @@ namespace FT.WEB.Controllers
             return View(hold);
         }
 
-        // POST: HoldListe/Delete/5
+        // POST: Hold/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
