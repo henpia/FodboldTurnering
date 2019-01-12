@@ -150,6 +150,7 @@
     <Compile Include="Controllers\HoldController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KampController.cs" />
+    <Compile Include="Controllers\RundeController.cs" />
     <Compile Include="Controllers\TurneringController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -210,6 +211,11 @@
     <Content Include="Views\Kamp\Details.cshtml" />
     <Content Include="Views\Kamp\Edit.cshtml" />
     <Content Include="Views\Kamp\Index.cshtml" />
+    <Content Include="Views\Runde\Create.cshtml" />
+    <Content Include="Views\Runde\Delete.cshtml" />
+    <Content Include="Views\Runde\Details.cshtml" />
+    <Content Include="Views\Runde\Edit.cshtml" />
+    <Content Include="Views\Runde\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
