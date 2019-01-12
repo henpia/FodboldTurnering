@@ -149,6 +149,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HoldController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\KampController.cs" />
     <Compile Include="Controllers\TurneringController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -204,6 +205,11 @@
     <Content Include="Views\Hold\Details.cshtml" />
     <Content Include="Views\Hold\Edit.cshtml" />
     <Content Include="Views\Hold\Index.cshtml" />
+    <Content Include="Views\Kamp\Create.cshtml" />
+    <Content Include="Views\Kamp\Delete.cshtml" />
+    <Content Include="Views\Kamp\Details.cshtml" />
+    <Content Include="Views\Kamp\Edit.cshtml" />
+    <Content Include="Views\Kamp\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

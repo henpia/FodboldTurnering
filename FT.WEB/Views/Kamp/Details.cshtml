@@ -1,0 +1,42 @@
+﻿@model FT.Entities.Models.Kamp
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Kamp</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Runde.Betegnelse)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Runde.Betegnelse)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DatoForKamp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DatoForKamp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Resultat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Resultat)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.KampId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
