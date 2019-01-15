@@ -47,7 +47,7 @@ namespace FT.WEB.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "TurneringId,Navn")] Turnering turnering)
+        public ActionResult Create([Bind(Include = "TurneringId,Navn,MaxAntalHold")] Turnering turnering)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +79,7 @@ namespace FT.WEB.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "TurneringId,Navn")] Turnering turnering)
+        public ActionResult Edit([Bind(Include = "TurneringId,Navn,MaxAntalHold")] Turnering turnering)
         {
             if (ModelState.IsValid)
             {

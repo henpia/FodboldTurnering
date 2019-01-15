@@ -14,6 +14,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Navn)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaxAntalHold)
+        </th>
         <th></th>
     </tr>
 
@@ -23,9 +26,12 @@
             @Html.DisplayFor(modelItem => item.Navn)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.TurneringId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.TurneringId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.TurneringId })
+            @Html.DisplayFor(modelItem => item.MaxAntalHold)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.TurneringId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.TurneringId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.TurneringId })
         </td>
     </tr>
 }
