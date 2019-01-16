@@ -4,12 +4,15 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2 class="text-center">Turneringer</h2>
+
+<br />
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    Vælg en turnering i tabellen nedenfor....
 </p>
-<table class="table">
+
+<table id="turneringsTable" class="table table-bordered table-condensed table-striped table-hover table-responsive">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Navn)
@@ -17,23 +20,22 @@
         <th>
             @Html.DisplayNameFor(model => model.MaxAntalHold)
         </th>
-        <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Navn)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MaxAntalHold)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.TurneringId }) |
-            @Html.ActionLink("Details", "Details", new { id = item.TurneringId }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.TurneringId })
-        </td>
-    </tr>
-}
-
+    @foreach (var item in Model)
+    {
+        <tr onclick="location.href='@(Url.Action("Details", "Turnering", new { id = item.TurneringId }))'">
+            <td>
+                @Html.DisplayFor(modelItem => item.Navn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaxAntalHold)
+            </td>
+        </tr>
+    }
 </table>
+<br />
+<p>
+    @Html.ActionLink("Create New", "Create", null, new { @class="btn btn-primary" })
+</p>
+
