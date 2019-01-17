@@ -28,7 +28,9 @@ namespace FT.WEB.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Turnering turnering = db.Turneringer.Find(id);
+            // Turnering turnering = db.Turneringer.Find(id);
+            // TODO: Overskrifter for liste over hold er hardcoded i Details View - skal rettes.
+            Turnering turnering = db.Turneringer.Include(h => h.HoldListe).Where(d => d.TurneringId == id).First();
             if (turnering == null)
             {
                 return HttpNotFound();

@@ -30,3 +30,33 @@
     @Html.ActionLink("Turneringer", "Index", null, new { @class="btn btn-primary" })
     @Html.ActionLink("Ret", "Edit", new { id = Model.TurneringId }, new { @class="btn btn-primary" })
 </p>
+
+<br />
+<p>
+    Følgende hold er tilmeldt til <strong>@Model.Navn</strong>:
+</p>
+
+<table id="turneringsTable" class="table table-bordered table-condensed table-striped table-hover table-responsive">
+    <tr>
+        <th>
+            Hold Navn
+            @*@Html.DisplayNameFor(model => model.HoldListe)*@
+        </th>
+        <th>
+            Dato For Tilmelding
+            @*@Html.DisplayNameFor(model => model.Navn)*@
+        </th>
+    </tr>
+
+    @foreach (var hold in Model.HoldListe)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => hold.Navn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => hold.DatoForTilmelding)
+            </td>
+        </tr>
+    }
+</table>
