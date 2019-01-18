@@ -82,6 +82,10 @@
     <Compile Include="Migrations\201901131023485_MaxAntalHold tilføjet til Turnering.Designer.cs">
       <DependentUpon>201901131023485_MaxAntalHold tilføjet til Turnering.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901171414224_Ændret DatoForTilmelding til DatoForOprettelse i Hold table..cs" />
+    <Compile Include="Migrations\201901171414224_Ændret DatoForTilmelding til DatoForOprettelse i Hold table..Designer.cs">
+      <DependentUpon>201901171414224_Ændret DatoForTilmelding til DatoForOprettelse i Hold table..cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\FodboldTurneringDB.cs" />
@@ -107,6 +111,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201901131023485_MaxAntalHold tilføjet til Turnering.resx">
       <DependentUpon>201901131023485_MaxAntalHold tilføjet til Turnering.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901171414224_Ændret DatoForTilmelding til DatoForOprettelse i Hold table..resx">
+      <DependentUpon>201901171414224_Ændret DatoForTilmelding til DatoForOprettelse i Hold table..cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

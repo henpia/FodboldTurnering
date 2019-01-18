@@ -13,7 +13,7 @@ namespace FT.Entities.Models
         public int HoldId { get; set; }
         public string Navn { get; set; }
         [Column(TypeName = "datetime2")]
-        public DateTime DatoForTilmelding { get; set; }
+        public DateTime DatoForOprettelse { get; set; }
         public int TurneringId { get; set; }
         public Turnering Turnering { get; set; }
         public ICollection<Kamp> Kampe { get; set; }

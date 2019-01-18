@@ -34,28 +34,28 @@ namespace FT.DAL.Migrations
                     HoldId = 1,
                     Navn = "Dalby",
                     TurneringId = 1,
-                    DatoForTilmelding = DateTime.Now
+                    DatoForOprettelse = DateTime.Now
                 },
                 new Hold
                 {
                     HoldId = 2,
                     Navn = "Rønnede",
                     TurneringId = 1,
-                    DatoForTilmelding = DateTime.Now
+                    DatoForOprettelse = DateTime.Now
                 },
                 new Hold
                 {
                     HoldId = 3,
                     Navn = "Faxe",
                     TurneringId = 1,
-                    DatoForTilmelding = DateTime.Now
+                    DatoForOprettelse = DateTime.Now
                 },
                 new Hold
                 {
                     HoldId = 4,
                     Navn = "Haslev",
                     TurneringId = 1,
-                    DatoForTilmelding = DateTime.Now
+                    DatoForOprettelse = DateTime.Now
                 }
             );
             context.SaveChanges();
