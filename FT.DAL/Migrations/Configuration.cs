@@ -34,29 +34,25 @@ namespace FT.DAL.Migrations
                 {
                     HoldId = 1,
                     Navn = "Dalby",
-                    TurneringId = 1,
-                    DatoForOprettelse = DateTime.Now
+                    TurneringId = 1
                 },
                 new Hold
                 {
                     HoldId = 2,
                     Navn = "Rønnede",
-                    TurneringId = 1,
-                    DatoForOprettelse = DateTime.Now
+                    TurneringId = 1
                 },
                 new Hold
                 {
                     HoldId = 3,
                     Navn = "Faxe",
-                    TurneringId = 1,
-                    DatoForOprettelse = DateTime.Now
+                    TurneringId = 1
                 },
                 new Hold
                 {
                     HoldId = 4,
                     Navn = "Haslev",
-                    TurneringId = 1,
-                    DatoForOprettelse = DateTime.Now
+                    TurneringId = 1
                 }
             );
             context.SaveChanges();
@@ -81,7 +77,6 @@ namespace FT.DAL.Migrations
                 new Kamp
                 {
                     KampId = 1,
-                    DatoForKamp = DateTime.Now,
                     HoldListe = new List<Hold>()
                     {
                         context.HoldListe.Single(h => h.HoldId == 1),
@@ -92,7 +87,6 @@ namespace FT.DAL.Migrations
                 new Kamp
                 {
                     KampId = 2,
-                    DatoForKamp = DateTime.Now,
                     HoldListe = new List<Hold>()
                     {
                         context.HoldListe.Single(h => h.HoldId == 3),

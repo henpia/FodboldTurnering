@@ -49,7 +49,7 @@ namespace FT.WEB.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "HoldId,Navn,DatoForTilmelding,TurneringId")] Hold hold)
+        public ActionResult Create([Bind(Include = "HoldId,Navn,TurneringId")] Hold hold)
         {
             if (ModelState.IsValid)
             {
@@ -83,7 +83,7 @@ namespace FT.WEB.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "HoldId,Navn,DatoForTilmelding,TurneringId")] Hold hold)
+        public ActionResult Edit([Bind(Include = "HoldId,Navn,TurneringId")] Hold hold)
         {
             if (ModelState.IsValid)
             {

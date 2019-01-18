@@ -49,7 +49,7 @@ namespace FT.WEB.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "KampId,DatoForKamp,Resultat,RundeId")] Kamp kamp)
+        public ActionResult Create([Bind(Include = "KampId,Resultat,RundeId")] Kamp kamp)
         {
             if (ModelState.IsValid)
             {
@@ -83,7 +83,7 @@ namespace FT.WEB.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "KampId,DatoForKamp,Resultat,RundeId")] Kamp kamp)
+        public ActionResult Edit([Bind(Include = "KampId,Resultat,RundeId")] Kamp kamp)
         {
             if (ModelState.IsValid)
             {

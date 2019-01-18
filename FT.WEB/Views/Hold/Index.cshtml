@@ -12,18 +12,12 @@
         <th>
             @Html.DisplayNameFor(model => model.Navn)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DatoForOprettelse)
-        </th>
     </tr>
 
 @foreach (var item in Model) {
     <tr onclick="location.href='@(Url.Action("Details", "Hold", new { id = item.HoldId }))'">
         <td>
             @Html.DisplayFor(modelItem => item.Navn)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DatoForOprettelse)
         </td>
     </tr>
 }

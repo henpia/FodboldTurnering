@@ -11,8 +11,6 @@ namespace FT.Entities.Models
     public class Kamp
     {
         public int KampId { get; set; }
-        [Column(TypeName = "datetime2")]
-        public DateTime DatoForKamp { get; set; }
         public string Resultat { get; set; }
         public ICollection<Hold> HoldListe { get; set; }
         public int RundeId { get; set; }
