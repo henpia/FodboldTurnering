@@ -24,7 +24,8 @@ namespace FT.DAL.Migrations
             context.Turneringer.AddOrUpdate(new Turnering
             {
                 TurneringId = 1,
-                Navn = "Dalby Open"
+                Navn = "Dalby Open",
+                MaxAntalHold = 4
             });
             context.SaveChanges();
 
