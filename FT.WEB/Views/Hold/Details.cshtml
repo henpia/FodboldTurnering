@@ -4,39 +4,30 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Information om @Model.Navn</h2>
 
 <div>
-    <h4>Hold</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Turnering.Navn)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Turnering.Navn)
-        </dd>
-
+    <dl>
         <dt>
             @Html.DisplayNameFor(model => model.Navn)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Navn)
+            @Html.EditorFor(model => model.Navn, new { htmlAttributes = new { @disabled = "disabled" } })
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DatoForTilmelding)
+            @Html.DisplayNameFor(model => model.DatoForOprettelse)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.DatoForTilmelding)
+            @Html.EditorFor(model => model.DatoForOprettelse, new { htmlAttributes = new { @disabled = "disabled" } })
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.HoldId }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Holdoversigt", "Index", null, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Ret", "Edit", new { id = Model.HoldId }, new { @class = "btn btn-primary" })
 </p>
