@@ -1,62 +1,66 @@
-﻿@model FT.Entities.Models.Turnering
-
-@{
-    ViewBag.Title = "Details";
-}
-
-<h2 class="text-center">Information om Turnering</h2>
-
-<div>
-    <hr />
-    <dl>
-        <dt>
-            @Html.DisplayNameFor(model => model.Navn)
-        </dt>
-
-        <dd>
-            @Html.EditorFor(model => model.Navn, new { htmlAttributes = new { @disabled="disabled" } })
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.MaxAntalHold)
-        </dt>
-        <dd>
-            @Html.EditorFor(model => model.MaxAntalHold, new { htmlAttributes = new { @disabled="disabled" } })
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Turneringer", "Index", null, new { @class="btn btn-primary" })
-    @Html.ActionLink("Ret", "Edit", new { id = Model.TurneringId }, new { @class="btn btn-primary" })
-</p>
+﻿@model FT.Entities.ViewModels.TurneringDetailsViewModel
 
 <br />
 <p>
-    Følgende hold er tilmeldt til <strong>@Model.Navn</strong>:
+    @Html.ActionLink("Turneringer", "Index", null, new { @class = "btn btn-primary" })
 </p>
 
-<table id="turneringsTable" class="table table-bordered table-condensed table-striped table-hover table-responsive">
-    <tr>
-        <th>
-            Hold Navn
-            @*@Html.DisplayNameFor(model => model.HoldListe)*@
-        </th>
-        <th>
-            Dato For Oprettelse
-            @*@Html.DisplayNameFor(model => model.Navn)*@
-        </th>
-    </tr>
+<h2 class="text-center"><strong>@Model.Turnering.Navn</strong></h2>
 
-    @foreach (var hold in Model.HoldListe)
+<div>
+    <dl>
+        <dt>
+            @Html.DisplayNameFor(model => model.Turnering.Navn)
+        </dt>
+        <dd>
+            @Html.EditorFor(model => model.Turnering.Navn, new { htmlAttributes = new { @disabled = "disabled" } })
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Turnering.MaxAntalHold)
+        </dt>
+        <dd>
+            @Html.EditorFor(model => model.Turnering.MaxAntalHold, new { htmlAttributes = new { @disabled = "disabled" } })
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Ret", "Edit", new { id = Model.Turnering.TurneringId }, new { @class = "btn btn-primary" })
+</p>
+
+<br />
+
+<p>
+    Følgende hold er tilmeldt <strong>@Model.Turnering.Navn</strong>:
+</p>
+
+
+<table id="turneringsTable" class="table table-bordered table-condensed table-striped table-hover table-responsive">
+    @foreach (var hold in Model.Turnering.HoldListe)
     {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => hold.Navn)
             </td>
+        </tr>
+    }
+</table>
+
+<br /><br />
+Vælg de hold, der skal tilmeldes <strong>@Model.Turnering.Navn</strong> nedenfor:
+<br /><br />
+<table class="table table-bordered table-condensed table-striped table-hover table-responsive">
+    @foreach (var hold in Model.IkkeTilmeldteHold)
+    {
+        <tr>
             <td>
-                @Html.DisplayFor(modelItem => hold.DatoForOprettelse)
+                @hold.Navn
             </td>
         </tr>
     }
 </table>
+
+<p>
+    @Html.ActionLink("Tilmeld Hold", "TilmeldHold", null, new { @class = "btn btn-primary" })
+</p>
+

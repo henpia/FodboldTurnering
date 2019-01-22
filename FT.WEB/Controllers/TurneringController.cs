@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using FT.DAL.Repositories;
 using FT.Entities.Models;
+using FT.Entities.ViewModels;
 
 namespace FT.WEB.Controllers
 {
@@ -28,14 +29,20 @@ namespace FT.WEB.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            // Turnering turnering = db.Turneringer.Find(id);
-            // TODO: Overskrifter for liste over hold er hardcoded i Details View - skal rettes.
+
             Turnering turnering = db.Turneringer.Include(h => h.HoldListe).Where(d => d.TurneringId == id).First();
             if (turnering == null)
             {
                 return HttpNotFound();
             }
-            return View(turnering);
+
+            List<Hold> ikkeTilmeldteHold = db.HoldListe.Where(d => d.TurneringId != id).ToList();
+            var viewModel = new TurneringDetailsViewModel()
+            {
+                Turnering = turnering,
+                IkkeTilmeldteHold = ikkeTilmeldteHold
+            };
+            return View(viewModel);
         }
 
         // GET: Turnering/Create
@@ -116,6 +123,13 @@ namespace FT.WEB.Controllers
             db.Turneringer.Remove(turnering);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult TilmeldHold(int id)
+        {
+            List<Hold> hold = db.HoldListe.Where(h => h.TurneringId != id).ToList();
+
+            return PartialView("_TilmeldHoldPartial", hold);
         }
 
         protected override void Dispose(bool disposing)

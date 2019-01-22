@@ -214,6 +214,7 @@
     <Content Include="Views\Runde\Details.cshtml" />
     <Content Include="Views\Runde\Edit.cshtml" />
     <Content Include="Views\Runde\Index.cshtml" />
+    <Content Include="Views\Shared\_TilmeldHoldPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

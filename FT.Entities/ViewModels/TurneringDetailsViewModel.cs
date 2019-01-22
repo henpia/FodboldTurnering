@@ -8,8 +8,7 @@ namespace FT.Entities.ViewModels
 {
     public class TurneringDetailsViewModel
     {
-        // Der er brug for en turnering
-        // Der er brug for en liste af hold
-        
+        public Turnering Turnering { get; set; }
+        public List<Hold> IkkeTilmeldteHold { get; set; }
     }
 }
