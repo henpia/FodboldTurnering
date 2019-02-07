@@ -18,8 +18,8 @@ namespace FT.WEB.Controllers
         // GET: Hold
         public ActionResult Index()
         {
-            var holdListe = db.HoldListe.Include(h => h.Turnering);
-            return View(holdListe.ToList());
+            var holdListe = db.HoldListe.ToList();
+            return View(holdListe);
         }
 
         // GET: Hold/Details/5
@@ -58,7 +58,6 @@ namespace FT.WEB.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.TurneringId = new SelectList(db.Turneringer, "TurneringId", "Navn", hold.TurneringId);
             return View(hold);
         }
 
@@ -74,7 +73,6 @@ namespace FT.WEB.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.TurneringId = new SelectList(db.Turneringer, "TurneringId", "Navn", hold.TurneringId);
             return View(hold);
         }
 
@@ -91,7 +89,6 @@ namespace FT.WEB.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.TurneringId = new SelectList(db.Turneringer, "TurneringId", "Navn", hold.TurneringId);
             return View(hold);
         }
 

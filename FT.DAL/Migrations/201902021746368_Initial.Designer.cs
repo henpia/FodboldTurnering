@@ -7,13 +7,13 @@ namespace FT.DAL.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class Fjernelseafdatoerfraentities : IMigrationMetadata
+    public sealed partial class Initial : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Fjernelseafdatoerfraentities));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Initial));
         
         string IMigrationMetadata.Id
         {
-            get { return "201901181505294_Fjernelse af datoer fra entities."; }
+            get { return "201902021746368_Initial"; }
         }
         
         string IMigrationMetadata.Source

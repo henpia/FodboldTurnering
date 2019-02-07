@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using FT.DAL.Repositories;
 using FT.Entities.Models;
 using FT.Entities.ViewModels;
+using Microsoft.Ajax.Utilities;
 
 namespace FT.WEB.Controllers
 {
@@ -36,7 +37,10 @@ namespace FT.WEB.Controllers
                 return HttpNotFound();
             }
 
-            List<Hold> ikkeTilmeldteHold = db.HoldListe.Where(d => d.TurneringId != id).ToList();
+            List<Hold> tilmeldteHold = turnering.HoldListe.ToList();
+            List<Hold> alleHold = db.HoldListe.ToList();
+            List<Hold> ikkeTilmeldteHold = alleHold.Except(tilmeldteHold).ToList();
+
             var viewModel = new TurneringDetailsViewModel()
             {
                 Turnering = turnering,
@@ -125,11 +129,15 @@ namespace FT.WEB.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult TilmeldHold(int id)
+        public ActionResult TilmeldHold(int turneringsId, int holdId)
         {
-            List<Hold> hold = db.HoldListe.Where(h => h.TurneringId != id).ToList();
+            Turnering turnering = db.Turneringer.Include(h => h.HoldListe).Where(t => t.TurneringId == turneringsId).First();
+            Hold holdAtTilmelde = db.HoldListe.Find(holdId);
+            turnering.HoldListe.Add(holdAtTilmelde);
+            db.SaveChanges();
 
-            return PartialView("_TilmeldHoldPartial", hold);
+            return RedirectToAction("Index");
+            //return RedirectToAction("Details", turneringsId);
         }
 
         protected override void Dispose(bool disposing)

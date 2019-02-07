@@ -12,8 +12,7 @@ namespace FT.Entities.Models
     {
         public int HoldId { get; set; }
         public string Navn { get; set; }
-        public int TurneringId { get; set; }
-        public Turnering Turnering { get; set; }
+        public ICollection<Turnering> Turneringer { get; set; }
         public ICollection<Kamp> Kampe { get; set; }
 
     }

@@ -52,7 +52,7 @@ Vælg de hold, der skal tilmeldes <strong>@Model.Turnering.Navn</strong> nedenfo
 <table class="table table-dark table-striped table-bordered table-hover table-sm table-responsive-md">
     @foreach (var hold in Model.IkkeTilmeldteHold)
     {
-        <tr>
+        <tr onclick="location.href='@(Url.Action("TilmeldHold", "Turnering", new {turneringsId = Model.Turnering.TurneringId, holdId = hold.HoldId } ))'">
             <td>
                 @hold.Navn
             </td>
@@ -60,6 +60,6 @@ Vælg de hold, der skal tilmeldes <strong>@Model.Turnering.Navn</strong> nedenfo
     }
 </table>
 
-<p>
-    @Html.ActionLink("Tilmeld Hold", "TilmeldHold", null, new { @class = "btn btn-primary" })
-</p>
+
+
+@*<tr onclick="location.href='@(Url.Action("TilmeldHold", "Turnering", new { turneringsId = Model.Turnering.TurneringId, holdId = hold.HoldId }))'">*@

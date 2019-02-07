@@ -74,21 +74,10 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\201901111334237_Initial.cs" />
-    <Compile Include="Migrations\201901111334237_Initial.Designer.cs">
-      <DependentUpon>201901111334237_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901131023485_MaxAntalHold tilføjet til Turnering.cs" />
-    <Compile Include="Migrations\201901131023485_MaxAntalHold tilføjet til Turnering.Designer.cs">
-      <DependentUpon>201901131023485_MaxAntalHold tilføjet til Turnering.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901171414224_Ændret DatoForTilmelding til DatoForOprettelse i Hold table..cs" />
-    <Compile Include="Migrations\201901171414224_Ændret DatoForTilmelding til DatoForOprettelse i Hold table..Designer.cs">
-      <DependentUpon>201901171414224_Ændret DatoForTilmelding til DatoForOprettelse i Hold table..cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901181505294_Fjernelse af datoer fra entities..cs" />
-    <Compile Include="Migrations\201901181505294_Fjernelse af datoer fra entities..Designer.cs">
-      <DependentUpon>201901181505294_Fjernelse af datoer fra entities..cs</DependentUpon>
+    <None Include="Repositories\Configuration - Copy.old" />
+    <Compile Include="Migrations\201902021746368_Initial.cs" />
+    <Compile Include="Migrations\201902021746368_Initial.Designer.cs">
+      <DependentUpon>201902021746368_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -110,17 +99,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201901111334237_Initial.resx">
-      <DependentUpon>201901111334237_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901131023485_MaxAntalHold tilføjet til Turnering.resx">
-      <DependentUpon>201901131023485_MaxAntalHold tilføjet til Turnering.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901171414224_Ændret DatoForTilmelding til DatoForOprettelse i Hold table..resx">
-      <DependentUpon>201901171414224_Ændret DatoForTilmelding til DatoForOprettelse i Hold table..cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901181505294_Fjernelse af datoer fra entities..resx">
-      <DependentUpon>201901181505294_Fjernelse af datoer fra entities..cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201902021746368_Initial.resx">
+      <DependentUpon>201902021746368_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
