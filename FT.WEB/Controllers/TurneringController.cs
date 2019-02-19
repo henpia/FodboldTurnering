@@ -37,16 +37,19 @@ namespace FT.WEB.Controllers
                 return HttpNotFound();
             }
 
-            List<Hold> tilmeldteHold = turnering.HoldListe.ToList();
-            List<Hold> alleHold = db.HoldListe.ToList();
-            List<Hold> ikkeTilmeldteHold = alleHold.Except(tilmeldteHold).ToList();
-
-            var viewModel = new TurneringDetailsViewModel()
-            {
-                Turnering = turnering,
-                IkkeTilmeldteHold = ikkeTilmeldteHold
-            };
+            TurneringDetailsViewModel viewModel = OpbygTurneringDetailsViewModel(turnering);
             return View(viewModel);
+        }
+
+        public ActionResult OpstartTurnering(int? turneringsId)
+        {
+            // sæt flag: tilmeldingMulig??
+
+            // udregn turneringsrunder (round robin)
+
+            // gem kampe i database
+
+            // gå til controller, der viser kampprogrammet for turneringen
         }
 
         // GET: Turnering/Create
@@ -129,16 +132,48 @@ namespace FT.WEB.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult TilmeldHold(int turneringsId, int holdId)
+        public ActionResult TilmeldHold(int turneringsId, int holdId) // ActionResult
         {
             Turnering turnering = db.Turneringer.Include(h => h.HoldListe).Where(t => t.TurneringId == turneringsId).First();
+            if (turnering.HoldListe.Count >= turnering.MaxAntalHold)
+            {
+                return RedirectToAction("Index");
+            }
+
             Hold holdAtTilmelde = db.HoldListe.Find(holdId);
             turnering.HoldListe.Add(holdAtTilmelde);
             db.SaveChanges();
 
-            return RedirectToAction("Index");
-            //return RedirectToAction("Details", turneringsId);
+            TurneringDetailsViewModel viewModel = OpbygTurneringDetailsViewModel(turnering);
+            return View("Details", viewModel);
         }
+
+        public ActionResult AfmeldHold(int turneringsId, int holdId)
+        {
+            Turnering turnering = db.Turneringer.Include(h => h.HoldListe).Where(t => t.TurneringId == turneringsId).First();
+            Hold holdAtFjerne = db.HoldListe.Find(holdId);
+
+            turnering.HoldListe.Remove(holdAtFjerne);
+            db.SaveChanges();
+
+            TurneringDetailsViewModel viewModel = OpbygTurneringDetailsViewModel(turnering);
+            return View("Details", viewModel);
+        }
+
+        private TurneringDetailsViewModel OpbygTurneringDetailsViewModel(Turnering turnering)
+        {
+            List<Hold> tilmeldteHold = turnering.HoldListe.ToList();
+            List<Hold> alleHold = db.HoldListe.ToList();
+            List<Hold> ikkeTilmeldteHold = alleHold.Except(tilmeldteHold).ToList();
+
+            var viewModel = new TurneringDetailsViewModel()
+            {
+                Turnering = turnering,
+                IkkeTilmeldteHold = ikkeTilmeldteHold
+            };
+            return viewModel;
+        }
+
 
         protected override void Dispose(bool disposing)
         {

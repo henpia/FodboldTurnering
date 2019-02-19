@@ -29,7 +29,7 @@ namespace FT.WEB.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Hold hold = db.HoldListe.Find(id);
+            Hold hold = db.HoldListe.Include(t => t.Turneringer).Where(h => h.HoldId == id).First();
             if (hold == null)
             {
                 return HttpNotFound();

@@ -4,7 +4,9 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Information om @Model.Navn</h2>
+<p>
+    <h2 class="text-center">Information om @Model.Navn</h2>
+</p>
 
 <div>
     <hr />
@@ -16,10 +18,25 @@
         <dd>
             @Html.EditorFor(model => model.Navn, new { htmlAttributes = new { @disabled = "disabled" } })
         </dd>
-
     </dl>
-</div>
-<p>
-    @Html.ActionLink("Holdoversigt", "Index", null, new { @class = "btn btn-primary" })
     @Html.ActionLink("Ret", "Edit", new { id = Model.HoldId }, new { @class = "btn btn-primary" })
+</div>
+
+<br />
+
+<p>
+    @Model.Navn er tilmeldt:
+</p>
+
+<table class="table table-dark table-striped table-bordered table-hover table-sm table-responsive-md">
+    @foreach (var turnering in Model.Turneringer)
+    {
+        <tr>
+            <td>@turnering.Navn</td>
+        </tr>
+    }
+</table>
+
+<p class="text-center">
+    @Html.ActionLink("Holdoversigt", "Index", null, new { @class = "btn btn-primary" })
 </p>
