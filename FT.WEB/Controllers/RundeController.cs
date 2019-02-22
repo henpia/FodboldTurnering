@@ -18,7 +18,7 @@ namespace FT.WEB.Controllers
         // GET: Runde
         public ActionResult Index()
         {
-            var runder = db.Runder.Include(r => r.Turnering);
+            var runder = db.TurneringsRunder.Include(r => r.Turnering);
             return View(runder.ToList());
         }
 
@@ -29,7 +29,7 @@ namespace FT.WEB.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Runde runde = db.Runder.Find(id);
+            TurneringsRunde runde = db.TurneringsRunder.Find(id);
             if (runde == null)
             {
                 return HttpNotFound();
@@ -49,11 +49,11 @@ namespace FT.WEB.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "RundeId,Betegnelse,TurneringId")] Runde runde)
+        public ActionResult Create([Bind(Include = "TurneringsRundeId,Betegnelse,TurneringId")] TurneringsRunde runde)
         {
             if (ModelState.IsValid)
             {
-                db.Runder.Add(runde);
+                db.TurneringsRunder.Add(runde);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -69,7 +69,7 @@ namespace FT.WEB.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Runde runde = db.Runder.Find(id);
+            TurneringsRunde runde = db.TurneringsRunder.Find(id);
             if (runde == null)
             {
                 return HttpNotFound();
@@ -83,7 +83,7 @@ namespace FT.WEB.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "RundeId,Betegnelse,TurneringId")] Runde runde)
+        public ActionResult Edit([Bind(Include = "TurneringsRundeId,Betegnelse,TurneringId")] TurneringsRunde runde)
         {
             if (ModelState.IsValid)
             {
@@ -102,7 +102,7 @@ namespace FT.WEB.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Runde runde = db.Runder.Find(id);
+            TurneringsRunde runde = db.TurneringsRunder.Find(id);
             if (runde == null)
             {
                 return HttpNotFound();
@@ -115,8 +115,8 @@ namespace FT.WEB.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Runde runde = db.Runder.Find(id);
-            db.Runder.Remove(runde);
+            TurneringsRunde runde = db.TurneringsRunder.Find(id);
+            db.TurneringsRunder.Remove(runde);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

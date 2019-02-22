@@ -74,13 +74,17 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Repositories\Configuration - Copy.old" />
-    <Compile Include="Migrations\201902021746368_Initial.cs" />
-    <Compile Include="Migrations\201902021746368_Initial.Designer.cs">
-      <DependentUpon>201902021746368_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201902201144095_Initial.cs" />
+    <Compile Include="Migrations\201902201144095_Initial.Designer.cs">
+      <DependentUpon>201902201144095_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902202021585_TurneringsRundeId.cs" />
+    <Compile Include="Migrations\201902202021585_TurneringsRundeId.Designer.cs">
+      <DependentUpon>201902202021585_TurneringsRundeId.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="Repositories\Configuration.old" />
     <Compile Include="Repositories\FodboldTurneringDB.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -99,8 +103,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201902021746368_Initial.resx">
-      <DependentUpon>201902021746368_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201902201144095_Initial.resx">
+      <DependentUpon>201902201144095_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902202021585_TurneringsRundeId.resx">
+      <DependentUpon>201902202021585_TurneringsRundeId.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

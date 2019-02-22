@@ -14,6 +14,5 @@ namespace FT.Entities.Models
         public string Navn { get; set; }
         public ICollection<Turnering> Turneringer { get; set; }
         public ICollection<Kamp> Kampe { get; set; }
-
     }
 }

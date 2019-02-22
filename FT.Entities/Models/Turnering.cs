@@ -13,7 +13,8 @@ namespace FT.Entities.Models
         public int TurneringId { get; set; }
         public string Navn { get; set; }
         public int MaxAntalHold { get; set; }
+        public bool AabenForTilmelding { get; set; } 
         public ICollection<Hold> HoldListe { get; set; }
-        public ICollection<Runde> Runder { get; set; }
+        public ICollection<TurneringsRunde> Runder { get; set; }
     }
 }

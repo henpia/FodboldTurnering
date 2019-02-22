@@ -25,29 +25,25 @@ namespace FT.DAL.Migrations
                 {
                     TurneringId = 1,
                     Navn = "Dalby Open",
-                    MaxAntalHold = 4,
-                    AabenForTilmelding = true
+                    MaxAntalHold = 4    
                 },
                 new Turnering
                 {
                     TurneringId = 2,
                     Navn = "Dalby Championship",
-                    MaxAntalHold = 6,
-                    AabenForTilmelding = true
+                    MaxAntalHold = 6
                 },
                 new Turnering
                 {
                     TurneringId = 3,
                     Navn = "Serie 1",
-                    MaxAntalHold = 18,
-                    AabenForTilmelding = true
+                    MaxAntalHold = 18
                 },
                 new Turnering
                 {
                     TurneringId = 4,
                     Navn = "Danmarksserien",
-                    MaxAntalHold = 14,
-                    AabenForTilmelding = true
+                    MaxAntalHold = 14
                 }
             );
             context.SaveChanges();
