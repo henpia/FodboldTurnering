@@ -90,7 +90,6 @@ namespace FT.WEB.Controllers
                     // Opbyg kamp
                     Kamp kamp = new Kamp
                     {
-                        TurneringsRundeId = j,
                         HoldListe = new List<Hold>
                         {
                             hjemmeHold[i],
@@ -115,14 +114,14 @@ namespace FT.WEB.Controllers
             }
 
 
-            foreach (var runde in TurneringsRundeKampe)
-            {
+            //foreach (var runde in TurneringsRundeKampe)
+            //{
                 // løkke med antal kampe. antal kampe = antalhold / 2
                 // lav kamp: hjemmeHold[i] mod udeHold[i].
                 // tilføj kamp til kampProgram. inclusive runde
 
                 // ryk hold rundt i hjemmeHold og udeHold
-            }
+            //}
 
             //hjemmeHold.Add(holdListe[0]);
             //hjemmeHold.Add(holdListe[1]);

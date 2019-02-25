@@ -152,7 +152,6 @@
     <Compile Include="Controllers\HoldController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KampController.cs" />
-    <Compile Include="Controllers\RundeController.cs" />
     <Compile Include="Controllers\TurneringController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
