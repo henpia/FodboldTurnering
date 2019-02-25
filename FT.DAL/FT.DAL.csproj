@@ -86,6 +86,10 @@
     <Compile Include="Migrations\201902251238235_FjernetTurneringsRundeEntity.Designer.cs">
       <DependentUpon>201902251238235_FjernetTurneringsRundeEntity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902251242028_TilføjetTurneringIdTilKampEntity.cs" />
+    <Compile Include="Migrations\201902251242028_TilføjetTurneringIdTilKampEntity.Designer.cs">
+      <DependentUpon>201902251242028_TilføjetTurneringIdTilKampEntity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="Repositories\Configuration.old" />
@@ -115,6 +119,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902251238235_FjernetTurneringsRundeEntity.resx">
       <DependentUpon>201902251238235_FjernetTurneringsRundeEntity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902251242028_TilføjetTurneringIdTilKampEntity.resx">
+      <DependentUpon>201902251242028_TilføjetTurneringIdTilKampEntity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

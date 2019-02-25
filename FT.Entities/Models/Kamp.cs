@@ -11,6 +11,7 @@ namespace FT.Entities.Models
     public class Kamp
     {
         public int KampId { get; set; }
+        public int TurneringId { get; set; }
         public int TurneringsRunde { get; set; }
         public ICollection<Hold> HoldListe { get; set; }
         public string ScoreHjemmeHold { get; set; }
