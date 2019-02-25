@@ -11,11 +11,10 @@ namespace FT.Entities.Models
     public class Kamp
     {
         public int KampId { get; set; }
-        [Column(TypeName = "datetime2")]
-        public DateTime DatoForKamp { get; set; }
-        public string Resultat { get; set; }
+        public int TurneringsRundeId { get; set; }
+        public TurneringsRunde Runde { get; set; }
         public ICollection<Hold> HoldListe { get; set; }
-        public int RundeId { get; set; }
-        public Runde Runde { get; set; }
+        public string ScoreHjemmeHold { get; set; }
+        public string ScoreUdeHold { get; set; }
     }
 }

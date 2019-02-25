@@ -4,39 +4,39 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<p>
+    <h2 class="text-center">Information om @Model.Navn</h2>
+</p>
 
 <div>
-    <h4>Hold</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Turnering.Navn)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Turnering.Navn)
-        </dd>
-
+    <dl>
         <dt>
             @Html.DisplayNameFor(model => model.Navn)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Navn)
+            @Html.EditorFor(model => model.Navn, new { htmlAttributes = new { @disabled = "disabled" } })
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DatoForTilmelding)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DatoForTilmelding)
-        </dd>
-
     </dl>
+    @Html.ActionLink("Ret", "Edit", new { id = Model.HoldId }, new { @class = "btn btn-primary" })
 </div>
+
+<br />
+
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.HoldId }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Model.Navn er tilmeldt:
+</p>
+
+<table class="table table-dark table-striped table-bordered table-hover table-sm table-responsive-md">
+    @foreach (var turnering in Model.Turneringer)
+    {
+        <tr>
+            <td>@turnering.Navn</td>
+        </tr>
+    }
+</table>
+
+<p class="text-center">
+    @Html.ActionLink("Holdoversigt", "Index", null, new { @class = "btn btn-primary" })
 </p>

@@ -13,6 +13,6 @@ namespace FT.DAL.Repositories
         public DbSet<Turnering> Turneringer { get; set; }
         public DbSet<Hold> HoldListe { get; set; }
         public DbSet<Kamp> Kampe { get; set; }
-        public DbSet<Runde> Runder { get; set; }
+        public DbSet<TurneringsRunde> TurneringsRunder { get; set; }
     }
 }

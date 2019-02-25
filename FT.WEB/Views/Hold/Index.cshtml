@@ -4,42 +4,31 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<p><h2 class="text-center">Hold</h2></p>
+
+<br />
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <h4>Vælg et hold i listen nedenfor....</h4>
 </p>
-<table class="table">
+
+<table class="table table-dark table-striped table-bordered table-hover table-sm table-responsive-md">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Turnering.Navn)
-        </th>
         <th>
             @Html.DisplayNameFor(model => model.Navn)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DatoForTilmelding)
-        </th>
-        <th></th>
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Turnering.Navn)
-        </td>
+    <tr onclick="location.href='@(Url.Action("Details", "Hold", new { id = item.HoldId }))'">
         <td>
             @Html.DisplayFor(modelItem => item.Navn)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DatoForTilmelding)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.HoldId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.HoldId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.HoldId })
         </td>
     </tr>
 }
 
 </table>
+
+<p>
+    @Html.ActionLink("Nyt Hold", "Create", null, new { @class = "btn btn-primary" })
+</p>

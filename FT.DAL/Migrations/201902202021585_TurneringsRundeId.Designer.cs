@@ -7,13 +7,13 @@ namespace FT.DAL.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class MaxAntalHoldtilføjettilTurnering : IMigrationMetadata
+    public sealed partial class TurneringsRundeId : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(MaxAntalHoldtilføjettilTurnering));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(TurneringsRundeId));
         
         string IMigrationMetadata.Id
         {
-            get { return "201901131023485_MaxAntalHold tilføjet til Turnering"; }
+            get { return "201902202021585_TurneringsRundeId"; }
         }
         
         string IMigrationMetadata.Source

@@ -13,36 +13,32 @@ namespace FT.DAL.Migrations
                     {
                         HoldId = c.Int(nullable: false, identity: true),
                         Navn = c.String(),
-                        DatoForTilmelding = c.DateTime(nullable: false, precision: 7, storeType: "datetime2"),
-                        TurneringId = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => t.HoldId)
-                .ForeignKey("dbo.Turnering", t => t.TurneringId, cascadeDelete: true)
-                .Index(t => t.TurneringId);
+                .PrimaryKey(t => t.HoldId);
             
             CreateTable(
                 "dbo.Kampe",
                 c => new
                     {
                         KampId = c.Int(nullable: false, identity: true),
-                        DatoForKamp = c.DateTime(nullable: false, precision: 7, storeType: "datetime2"),
-                        Resultat = c.String(),
                         RundeId = c.Int(nullable: false),
+                        ScoreHjemmeHold = c.String(),
+                        ScoreUdeHold = c.String(),
+                        Runde_TurneringsRundeId = c.Int(),
                     })
                 .PrimaryKey(t => t.KampId)
-                .ForeignKey("dbo.Runder", t => t.RundeId, cascadeDelete: true)
-                .Index(t => t.RundeId);
+                .ForeignKey("dbo.TurneringsRunder", t => t.Runde_TurneringsRundeId)
+                .Index(t => t.Runde_TurneringsRundeId);
             
             CreateTable(
-                "dbo.Runder",
+                "dbo.TurneringsRunder",
                 c => new
                     {
-                        RundeId = c.Int(nullable: false, identity: true),
-                        Betegnelse = c.String(),
+                        TurneringsRundeId = c.Int(nullable: false, identity: true),
                         TurneringId = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => t.RundeId)
-                .ForeignKey("dbo.Turnering", t => t.TurneringId, cascadeDelete: true)
+                .PrimaryKey(t => t.TurneringsRundeId)
+                .ForeignKey("dbo.Turnering", t => t.TurneringId, cascadeDelete: false)
                 .Index(t => t.TurneringId);
             
             CreateTable(
@@ -51,6 +47,8 @@ namespace FT.DAL.Migrations
                     {
                         TurneringId = c.Int(nullable: false, identity: true),
                         Navn = c.String(),
+                        MaxAntalHold = c.Int(nullable: false),
+                        AabenForTilmelding = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.TurneringId);
             
@@ -67,23 +65,39 @@ namespace FT.DAL.Migrations
                 .Index(t => t.Kamp_KampId)
                 .Index(t => t.Hold_HoldId);
             
+            CreateTable(
+                "dbo.TurneringHolds",
+                c => new
+                    {
+                        Turnering_TurneringId = c.Int(nullable: false),
+                        Hold_HoldId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => new { t.Turnering_TurneringId, t.Hold_HoldId })
+                .ForeignKey("dbo.Turnering", t => t.Turnering_TurneringId, cascadeDelete: false)
+                .ForeignKey("dbo.HoldListe", t => t.Hold_HoldId, cascadeDelete: false)
+                .Index(t => t.Turnering_TurneringId)
+                .Index(t => t.Hold_HoldId);
+            
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.Runder", "TurneringId", "dbo.Turnering");
-            DropForeignKey("dbo.HoldListe", "TurneringId", "dbo.Turnering");
-            DropForeignKey("dbo.Kampe", "RundeId", "dbo.Runder");
+            DropForeignKey("dbo.TurneringsRunder", "TurneringId", "dbo.Turnering");
+            DropForeignKey("dbo.TurneringHolds", "Hold_HoldId", "dbo.HoldListe");
+            DropForeignKey("dbo.TurneringHolds", "Turnering_TurneringId", "dbo.Turnering");
+            DropForeignKey("dbo.Kampe", "Runde_TurneringsRundeId", "dbo.TurneringsRunder");
             DropForeignKey("dbo.KampHolds", "Hold_HoldId", "dbo.HoldListe");
             DropForeignKey("dbo.KampHolds", "Kamp_KampId", "dbo.Kampe");
+            DropIndex("dbo.TurneringHolds", new[] { "Hold_HoldId" });
+            DropIndex("dbo.TurneringHolds", new[] { "Turnering_TurneringId" });
             DropIndex("dbo.KampHolds", new[] { "Hold_HoldId" });
             DropIndex("dbo.KampHolds", new[] { "Kamp_KampId" });
-            DropIndex("dbo.Runder", new[] { "TurneringId" });
-            DropIndex("dbo.Kampe", new[] { "RundeId" });
-            DropIndex("dbo.HoldListe", new[] { "TurneringId" });
+            DropIndex("dbo.TurneringsRunder", new[] { "TurneringId" });
+            DropIndex("dbo.Kampe", new[] { "Runde_TurneringsRundeId" });
+            DropTable("dbo.TurneringHolds");
             DropTable("dbo.KampHolds");
             DropTable("dbo.Turnering");
-            DropTable("dbo.Runder");
+            DropTable("dbo.TurneringsRunder");
             DropTable("dbo.Kampe");
             DropTable("dbo.HoldListe");
         }

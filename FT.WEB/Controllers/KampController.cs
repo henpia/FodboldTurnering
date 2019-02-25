@@ -40,7 +40,7 @@ namespace FT.WEB.Controllers
         // GET: Kamp/Create
         public ActionResult Create()
         {
-            ViewBag.RundeId = new SelectList(db.Runder, "RundeId", "Betegnelse");
+            ViewBag.RundeId = new SelectList(db.TurneringsRunder, "TurneringsRundeId", "Betegnelse");
             return View();
         }
 
@@ -49,7 +49,7 @@ namespace FT.WEB.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "KampId,DatoForKamp,Resultat,RundeId")] Kamp kamp)
+        public ActionResult Create([Bind(Include = "KampId,Resultat,TurneringsRundeId")] Kamp kamp)
         {
             if (ModelState.IsValid)
             {
@@ -58,7 +58,7 @@ namespace FT.WEB.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.RundeId = new SelectList(db.Runder, "RundeId", "Betegnelse", kamp.RundeId);
+            ViewBag.RundeId = new SelectList(db.TurneringsRunder, "TurneringsRundeId", "Betegnelse", kamp.TurneringsRundeId);
             return View(kamp);
         }
 
@@ -74,7 +74,7 @@ namespace FT.WEB.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.RundeId = new SelectList(db.Runder, "RundeId", "Betegnelse", kamp.RundeId);
+            ViewBag.RundeId = new SelectList(db.TurneringsRunder, "TurneringsRundeId", "Betegnelse", kamp.TurneringsRundeId);
             return View(kamp);
         }
 
@@ -83,7 +83,7 @@ namespace FT.WEB.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "KampId,DatoForKamp,Resultat,RundeId")] Kamp kamp)
+        public ActionResult Edit([Bind(Include = "KampId,Resultat,TurneringsRundeId")] Kamp kamp)
         {
             if (ModelState.IsValid)
             {
@@ -91,7 +91,7 @@ namespace FT.WEB.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.RundeId = new SelectList(db.Runder, "RundeId", "Betegnelse", kamp.RundeId);
+            ViewBag.RundeId = new SelectList(db.TurneringsRunder, "TurneringsRundeId", "Betegnelse", kamp.TurneringsRundeId);
             return View(kamp);
         }
 

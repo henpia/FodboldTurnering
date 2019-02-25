@@ -1,33 +1,69 @@
-﻿@model FT.Entities.Models.Turnering
+﻿@model FT.Entities.ViewModels.TurneringDetailsViewModel
 
-@{
-    ViewBag.Title = "Details";
-}
+<br />
+<p>
+    @Html.ActionLink("Turneringer", "Index", null, new { @class = "btn btn-primary" })
+</p>
 
-<h2>Details</h2>
+<h2 class="text-center"><strong>@Model.Turnering.Navn</strong></h2>
 
 <div>
-    <h4>Turnering</h4>
-    <hr />
-    <dl class="dl-horizontal">
+    <dl>
         <dt>
-            @Html.DisplayNameFor(model => model.Navn)
+            @Html.DisplayNameFor(model => model.Turnering.Navn)
         </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.Navn)
+            @Html.EditorFor(model => model.Turnering.Navn, new { htmlAttributes = new { @disabled = "disabled" } })
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.MaxAntalHold)
+            @Html.DisplayNameFor(model => model.Turnering.MaxAntalHold)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.MaxAntalHold)
+            @Html.EditorFor(model => model.Turnering.MaxAntalHold, new { htmlAttributes = new { @disabled = "disabled" } })
         </dd>
-
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.TurneringId }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Ret", "Edit", new { id = Model.Turnering.TurneringId }, new { @class = "btn btn-primary" })
 </p>
+
+<br />
+
+<p>
+    Følgende hold er tilmeldt <strong>@Model.Turnering.Navn</strong>:
+</p>
+
+
+<table class="table table-dark table-striped table-bordered table-hover table-sm table-responsive-md">
+    @foreach (var hold in Model.Turnering.HoldListe)
+    {
+        <tr onclick="location.href='@(Url.Action("AfmeldHold", "Turnering", new { turneringsId = Model.Turnering.TurneringId, holdId = hold.HoldId } ))'">
+            <td>
+                @Html.DisplayFor(modelItem => hold.Navn)
+            </td>
+        </tr>
+    }
+</table>
+
+<p class="text-center">
+    @Html.ActionLink("START TURNERING", "StartTurnering", new { turneringsId = Model.Turnering.TurneringId }, new { @class = "btn btn-success" })
+</p>
+
+<br /><br />
+Vælg de hold, der skal tilmeldes <strong>@Model.Turnering.Navn</strong> nedenfor:
+<br /><br />
+<table class="table table-dark table-striped table-bordered table-hover table-sm table-responsive-md">
+    @foreach (var hold in Model.IkkeTilmeldteHold)
+    {
+        <tr onclick="location.href='@(Url.Action("TilmeldHold", "Turnering", new { turneringsId = Model.Turnering.TurneringId, holdId = hold.HoldId } ))'">
+            <td>
+                @hold.Navn
+            </td>
+        </tr>
+    }
+</table>
+
+
+
+@*<tr onclick="location.href='@(Url.Action("TilmeldHold", "Turnering", new { turneringsId = Model.Turnering.TurneringId, holdId = hold.HoldId }))'">*@

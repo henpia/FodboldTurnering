@@ -1,0 +1,24 @@
+﻿@model IEnumerable<FT.Entities.Models.Hold>
+
+<p>
+    Du kan vælge hold fra nedenstående liste, der skal tilmeldes turneringen:
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Turnering.Navn)
+        </th>
+    </tr>
+
+    @*<tr onclick="location.href='@(Url.Action("Details", "Turnering", new { id = item.TurneringId }))'">*@
+
+    @foreach (var item in Model)
+    {
+        <tr onclick="location.href='@(Url.Action("TilmeldHoldTilTurnering", "Turnering",new { id=item.HoldId }))'">
+            <td>
+                @Html.DisplayFor(modelItem => item.Navn)
+            </td>
+        </tr>
+    }
+
+</table>
