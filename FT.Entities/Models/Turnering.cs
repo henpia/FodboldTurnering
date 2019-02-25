@@ -15,6 +15,6 @@ namespace FT.Entities.Models
         public int MaxAntalHold { get; set; }
         public bool AabenForTilmelding { get; set; } 
         public ICollection<Hold> HoldListe { get; set; }
-        public ICollection<TurneringsRunde> Runder { get; set; }
+        public ICollection<Kamp> Kampe { get; set; }
     }
 }

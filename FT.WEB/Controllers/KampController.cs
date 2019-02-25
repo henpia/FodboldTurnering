@@ -18,8 +18,8 @@ namespace FT.WEB.Controllers
         // GET: Kamp
         public ActionResult Index()
         {
-            var kampe = db.Kampe.Include(k => k.Runde);
-            return View(kampe.ToList());
+            var kampe = db.Kampe.ToList();
+            return View(kampe);
         }
 
         // GET: Kamp/Details/5
@@ -40,7 +40,6 @@ namespace FT.WEB.Controllers
         // GET: Kamp/Create
         public ActionResult Create()
         {
-            ViewBag.RundeId = new SelectList(db.TurneringsRunder, "TurneringsRundeId", "Betegnelse");
             return View();
         }
 
@@ -58,7 +57,6 @@ namespace FT.WEB.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.RundeId = new SelectList(db.TurneringsRunder, "TurneringsRundeId", "Betegnelse", kamp.TurneringsRundeId);
             return View(kamp);
         }
 
@@ -74,7 +72,6 @@ namespace FT.WEB.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.RundeId = new SelectList(db.TurneringsRunder, "TurneringsRundeId", "Betegnelse", kamp.TurneringsRundeId);
             return View(kamp);
         }
 
@@ -91,7 +88,6 @@ namespace FT.WEB.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.RundeId = new SelectList(db.TurneringsRunder, "TurneringsRundeId", "Betegnelse", kamp.TurneringsRundeId);
             return View(kamp);
         }
 
