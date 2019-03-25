@@ -1,0 +1,21 @@
+﻿@model FT.Entities.ViewModels.KampprogramViewModel
+
+@{
+    ViewBag.Title = "Kampprogram";
+}
+<p>
+    <h2 class="text-center">Kampprogram for @Model.TurneringsNavn</h2>
+</p>
+
+
+@* Liste over hold tilmeldt turneringen *@
+<p>
+    Følgende hold er tilmeldt @Model.TurneringsNavn
+</p>
+
+@foreach (var hold in Model.HoldTilmeldtTurnering)
+{
+    <div class="row">
+        @Html.DisplayFor(model => hold.Navn)
+    </div>
+}

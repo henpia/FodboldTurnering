@@ -72,6 +72,7 @@
     <Compile Include="Models\Kamp.cs" />
     <Compile Include="Models\Turnering.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\KampprogramViewModel.cs" />
     <Compile Include="ViewModels\TurneringDetailsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

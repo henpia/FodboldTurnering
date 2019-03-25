@@ -34,26 +34,61 @@ namespace FT.WEB.Controllers
             }
 
             // REPOSITORY !!!
-            Turnering turnering = db.Turneringer.Include(h => h.HoldListe).Where(d => d.TurneringId == id).First();
+            Turnering turnering = db.Turneringer.Include(h => h.HoldListe).Include(k => k.Kampe).Where(d => d.TurneringId == id).First();
             if (turnering == null)
             {
                 return HttpNotFound();
+            }
+
+            if (turnering.HoldListe.Count >= turnering.MaxAntalHold || turnering.AabenForTilmelding == false)
+            {
+                return RedirectToAction("Kampprogram", new { turneringsId = turnering.TurneringId });
             }
 
             TurneringDetailsViewModel viewModel = OpbygTurneringDetailsViewModel(turnering);
             return View(viewModel);
         }
 
-        public void StartTurnering(int? turneringsId)
+        public ActionResult StartTurnering(int? turneringsId)
         {
             // REPOSITORY !!!
-            var turnering = db.Turneringer.Include(h => h.HoldListe).Where(t => t.TurneringId == turneringsId).First();
+            Turnering turnering = db.Turneringer.Include(h => h.HoldListe).Where(t => t.TurneringId == turneringsId).First();
 
             LukForTilmeldinger(turnering);
 
             UdregnKampprogram(turnering);
 
-            // vis kampprogram for turnering
+            GemKampprogram(turnering);
+
+            return RedirectToAction("Kampprogram", new { turneringsId = turnering.TurneringId });
+        }
+
+        private KampprogramViewModel OpbygKampprogramViewModel(Turnering turnering)
+        {
+            List<Hold> holdTilmeldtTurnering = turnering.HoldListe.ToList();
+            List<Kamp> kampe = turnering.Kampe.ToList();
+
+            KampprogramViewModel viewModel = new KampprogramViewModel()
+            {
+                TurneringId = turnering.TurneringId,
+                TurneringsNavn = turnering.Navn,
+                HoldTilmeldtTurnering = holdTilmeldtTurnering,
+                Kampe = kampe
+            };
+            
+            return viewModel;
+        }
+
+        private void GemKampprogram(Turnering turnering)
+        {
+            db.SaveChanges();
+        }
+
+        public ActionResult Kampprogram(int? turneringsId)
+        {
+            Turnering turnering = db.Turneringer.Include(h => h.HoldListe).Include(k => k.Kampe).Where(t => t.TurneringId == turneringsId).First();
+            KampprogramViewModel viewModel = OpbygKampprogramViewModel(turnering);
+            return View(viewModel);
         }
 
         public void LukForTilmeldinger(Turnering turnering)
@@ -65,31 +100,30 @@ namespace FT.WEB.Controllers
 
         private void UdregnKampprogram(Turnering turnering)
         {
-            var antalTurneringsRunder = turnering.HoldListe.Count - 1;
-            var antalHold = turnering.HoldListe.Count;
-
             Hold[] holdListe = turnering.HoldListe.ToArray();
-            List<Hold> hjemmeHold = new List<Hold>();
-            List<Hold> udeHold = new List<Hold>();
+            int antalHold = holdListe.Count();
+            int antalTurneringsRunder = BeregnAntalTurneringsRunder(antalHold);
 
-            for (int i = 0; i < antalHold; i += 2)
+            List<Hold> hjemmeHold, udeHold;
+            FordelHjemmeOgUdehold(holdListe, antalHold, antalTurneringsRunder, out hjemmeHold, out udeHold);
+
+            var antalKampePrRunde = antalHold / 2;
+            List<Kamp> TurneringsRundeKampe = BeregnKampeForTurnering(turnering, antalTurneringsRunder, hjemmeHold, udeHold, antalKampePrRunde);
+            turnering.Kampe = TurneringsRundeKampe;
+        }
+
+        private static List<Kamp> BeregnKampeForTurnering(Turnering turnering, int antalTurneringsRunder, List<Hold> hjemmeHold, List<Hold> udeHold, int antalKampePrRunde)
+        {
+            List<Kamp> TurneringsRundeKampe = new List<Kamp>();
+
+            for (int j = 1; j <= antalTurneringsRunder; j++)
             {
-                hjemmeHold.Add(holdListe[i]);
-                udeHold.Add(holdListe[i + 1]);
-            }
-
-            udeHold.Reverse();
-
-            var antalKampe = antalHold / 2;
-
-            for (int j = 1; j < antalTurneringsRunder; j++)
-            {
-                List<Kamp> TurneringsRundeKampe = new List<Kamp>();
-                for (int i = 0; i < antalKampe; i++) // For hver runde
+                for (int i = 0; i < antalKampePrRunde; i++)
                 {
-                    // Opbyg kamp
                     Kamp kamp = new Kamp
                     {
+                        TurneringId = turnering.TurneringId,
+                        TurneringsRunde = j,
                         HoldListe = new List<Hold>
                         {
                             hjemmeHold[i],
@@ -99,67 +133,57 @@ namespace FT.WEB.Controllers
                         ScoreUdeHold = ""
                     };
                     TurneringsRundeKampe.Add(kamp);
+                }
 
-                    // variabel = 1ste udehold
-                    // fjerne det 1ste udehold
-                    // indsætte variabel på 2. hjemmeholds plads
-                    Hold foersteUdeHold = udeHold[0];
-                    udeHold.Remove(udeHold[0]);
-
-                    // variabel = sidste hjemmehold
-                    // fjerne det sidste hjemmehold
-                    // indsætte variabel på sidste udeholds plads
-
-                } 
+                OmrokerHjemmeOgUdeholdTilNaesteTurneringsRunde(hjemmeHold, udeHold);
             }
 
+            return TurneringsRundeKampe;
+        }
 
-            //foreach (var runde in TurneringsRundeKampe)
-            //{
-                // løkke med antal kampe. antal kampe = antalhold / 2
-                // lav kamp: hjemmeHold[i] mod udeHold[i].
-                // tilføj kamp til kampProgram. inclusive runde
+        private static void OmrokerHjemmeOgUdeholdTilNaesteTurneringsRunde(List<Hold> hjemmeHold, List<Hold> udeHold)
+        {
+            Hold foersteUdeHold = udeHold[0];
+            udeHold.Remove(udeHold[0]);
+            hjemmeHold.Insert(1, foersteUdeHold);
 
-                // ryk hold rundt i hjemmeHold og udeHold
-            //}
+            Hold sidsteHjemmeHold = hjemmeHold[hjemmeHold.Count - 1];
+            hjemmeHold.Remove(hjemmeHold[hjemmeHold.Count - 1]);
+            udeHold.Insert(udeHold.Count, sidsteHjemmeHold);
+        }
 
-            //hjemmeHold.Add(holdListe[0]);
-            //hjemmeHold.Add(holdListe[1]);
-            //Hold firstHold = hjemmeHold[0];
-            //hjemmeHold.Remove(firstHold);
+        private static void FordelHjemmeOgUdehold(Hold[] holdListe, int antalHold, int antalTurneringsRunder, out List<Hold> hjemmeHold, out List<Hold> udeHold)
+        {
+            hjemmeHold = new List<Hold>();
+            udeHold = new List<Hold>();
 
-            //var holdQueue = new Queue<Hold>();
-            //foreach (var hold in holdListe)
-            //{
-            //    holdQueue.Enqueue(hold);
-            //}
+            // fordel hjemme- og udehold
+            int index = 0;
+            while (index < antalTurneringsRunder)
+            {
+                hjemmeHold.Add(holdListe[index]);
+                udeHold.Add(holdListe[index + 1]);
+                index += 2;
+            }
+            if (antalHold % 2 != 0)
+            {
+                hjemmeHold.Add(holdListe[antalHold - 1]);
+            }
+        }
 
-            //var kampProgram = new List<Kamp>();
-            //for (int i = 0; i < antalTurneringsRunder; i++)
-            //{
-            //    for (int j = 0; j < antalHold; j++)
-            //    {
-            //        var hjemmeHold = holdQueue.Dequeue();
-            //        var udeHold = holdQueue.Dequeue();
-            //        kampProgram.Add(
-            //                new Kamp
-            //                {
-            //                    TurneringsRundeId = i,
-            //                    HoldListe = new List<Hold>()
-            //                    {
-            //                        hjemmeHold,
-            //                        udeHold
-            //                    },
-            //                    ScoreHjemmeHold = "",
-            //                    ScoreUdeHold = ""
-            //                }
-            //        );
-            //        holdQueue.Enqueue(hjemmeHold);
-            //        holdQueue.Enqueue(udeHold);
-            //    }
-            //}
-            //// Der skal tages højde for lige såvel som ulige antal tilmeldte hold
+        private static int BeregnAntalTurneringsRunder(int antalHold)
+        {
+            int antalTurneringsRunder;
+            if (antalHold % 2 != 0)
+            {
+                antalTurneringsRunder = antalHold;
+            }
+            else
+            {
+                antalTurneringsRunder = antalHold - 1;
+            }
 
+            return antalTurneringsRunder;
         }
 
         // GET: Turnering/Create
@@ -177,6 +201,7 @@ namespace FT.WEB.Controllers
         {
             if (ModelState.IsValid)
             {
+                turnering.AabenForTilmelding = true;
                 // REPOSITORY !!!
                 db.Turneringer.Add(turnering);
                 db.SaveChanges();
@@ -207,7 +232,7 @@ namespace FT.WEB.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "TurneringId,Navn,MaxAntalHold")] Turnering turnering)
+        public ActionResult Edit([Bind(Include = "TurneringId,Navn,MaxAntalHold,AabenForTilmelding")] Turnering turnering)
         {
             if (ModelState.IsValid)
             {

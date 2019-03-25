@@ -21,24 +21,13 @@ namespace FT.DAL.Migrations
                 c => new
                     {
                         KampId = c.Int(nullable: false, identity: true),
-                        RundeId = c.Int(nullable: false),
+                        TurneringId = c.Int(nullable: false),
+                        TurneringsRunde = c.Int(nullable: false),
                         ScoreHjemmeHold = c.String(),
                         ScoreUdeHold = c.String(),
-                        Runde_TurneringsRundeId = c.Int(),
                     })
                 .PrimaryKey(t => t.KampId)
-                .ForeignKey("dbo.TurneringsRunder", t => t.Runde_TurneringsRundeId)
-                .Index(t => t.Runde_TurneringsRundeId);
-            
-            CreateTable(
-                "dbo.TurneringsRunder",
-                c => new
-                    {
-                        TurneringsRundeId = c.Int(nullable: false, identity: true),
-                        TurneringId = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => t.TurneringsRundeId)
-                .ForeignKey("dbo.Turnering", t => t.TurneringId, cascadeDelete: false)
+                .ForeignKey("dbo.Turnering", t => t.TurneringId, cascadeDelete: true)
                 .Index(t => t.TurneringId);
             
             CreateTable(
@@ -60,8 +49,8 @@ namespace FT.DAL.Migrations
                         Hold_HoldId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => new { t.Kamp_KampId, t.Hold_HoldId })
-                .ForeignKey("dbo.Kampe", t => t.Kamp_KampId, cascadeDelete: false)
-                .ForeignKey("dbo.HoldListe", t => t.Hold_HoldId, cascadeDelete: false)
+                .ForeignKey("dbo.Kampe", t => t.Kamp_KampId, cascadeDelete: true)
+                .ForeignKey("dbo.HoldListe", t => t.Hold_HoldId, cascadeDelete: true)
                 .Index(t => t.Kamp_KampId)
                 .Index(t => t.Hold_HoldId);
             
@@ -73,8 +62,8 @@ namespace FT.DAL.Migrations
                         Hold_HoldId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => new { t.Turnering_TurneringId, t.Hold_HoldId })
-                .ForeignKey("dbo.Turnering", t => t.Turnering_TurneringId, cascadeDelete: false)
-                .ForeignKey("dbo.HoldListe", t => t.Hold_HoldId, cascadeDelete: false)
+                .ForeignKey("dbo.Turnering", t => t.Turnering_TurneringId, cascadeDelete: true)
+                .ForeignKey("dbo.HoldListe", t => t.Hold_HoldId, cascadeDelete: true)
                 .Index(t => t.Turnering_TurneringId)
                 .Index(t => t.Hold_HoldId);
             
@@ -82,22 +71,19 @@ namespace FT.DAL.Migrations
         
         public override void Down()
         {
-            DropForeignKey("dbo.TurneringsRunder", "TurneringId", "dbo.Turnering");
+            DropForeignKey("dbo.Kampe", "TurneringId", "dbo.Turnering");
             DropForeignKey("dbo.TurneringHolds", "Hold_HoldId", "dbo.HoldListe");
             DropForeignKey("dbo.TurneringHolds", "Turnering_TurneringId", "dbo.Turnering");
-            DropForeignKey("dbo.Kampe", "Runde_TurneringsRundeId", "dbo.TurneringsRunder");
             DropForeignKey("dbo.KampHolds", "Hold_HoldId", "dbo.HoldListe");
             DropForeignKey("dbo.KampHolds", "Kamp_KampId", "dbo.Kampe");
             DropIndex("dbo.TurneringHolds", new[] { "Hold_HoldId" });
             DropIndex("dbo.TurneringHolds", new[] { "Turnering_TurneringId" });
             DropIndex("dbo.KampHolds", new[] { "Hold_HoldId" });
             DropIndex("dbo.KampHolds", new[] { "Kamp_KampId" });
-            DropIndex("dbo.TurneringsRunder", new[] { "TurneringId" });
-            DropIndex("dbo.Kampe", new[] { "Runde_TurneringsRundeId" });
+            DropIndex("dbo.Kampe", new[] { "TurneringId" });
             DropTable("dbo.TurneringHolds");
             DropTable("dbo.KampHolds");
             DropTable("dbo.Turnering");
-            DropTable("dbo.TurneringsRunder");
             DropTable("dbo.Kampe");
             DropTable("dbo.HoldListe");
         }
