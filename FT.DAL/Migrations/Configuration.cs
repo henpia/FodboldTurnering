@@ -24,29 +24,36 @@ namespace FT.DAL.Migrations
                 new Turnering
                 {
                     TurneringId = 1,
-                    Navn = "Dalby Open",
+                    Navn = "Turnering 1",
                     MaxAntalHold = 4,
                     AabenForTilmelding = true
                 },
                 new Turnering
                 {
                     TurneringId = 2,
-                    Navn = "Dalby Championship",
-                    MaxAntalHold = 6,
+                    Navn = "Turnering 2",
+                    MaxAntalHold = 5,
                     AabenForTilmelding = true
                 },
                 new Turnering
                 {
                     TurneringId = 3,
-                    Navn = "Serie 1",
-                    MaxAntalHold = 18,
+                    Navn = "Turnering 3",
+                    MaxAntalHold = 6,
                     AabenForTilmelding = true
                 },
                 new Turnering
                 {
                     TurneringId = 4,
-                    Navn = "Danmarksserien",
-                    MaxAntalHold = 14,
+                    Navn = "Turnering 4",
+                    MaxAntalHold = 7,
+                    AabenForTilmelding = true
+                },
+                new Turnering
+                {
+                    TurneringId = 5,
+                    Navn = "Turnering 5",
+                    MaxAntalHold = 8,
                     AabenForTilmelding = true
                 }
             );
@@ -56,135 +63,46 @@ namespace FT.DAL.Migrations
                 new Hold
                 {
                     HoldId = 1,
-                    Navn = "Dalby",
-                    Turneringer = new List<Turnering>()
-                    {
-                        context.Turneringer.Single(t => t.TurneringId == 1),
-                        context.Turneringer.Single(t => t.TurneringId == 2)
-                    }
+                    Navn = "Hold 1"
                 },
                 new Hold
                 {
                     HoldId = 2,
-                    Navn = "Haslev",
-                    Turneringer = new List<Turnering>()
-                    {
-                        context.Turneringer.Single(t => t.TurneringId == 2)
-                    }
+                    Navn = "Hold 2"
                 },
                 new Hold
                 {
                     HoldId = 3,
-                    Navn = "Næstved",
-                    Turneringer = new List<Turnering>()
-                    {
-                        context.Turneringer.Single(t => t.TurneringId == 4)
-                    }
+                    Navn = "Hold 3"
                 },
                 new Hold
                 {
                     HoldId = 4,
-                    Navn = "Herfølge",
-                    Turneringer = new List<Turnering>()
-                    {
-                        context.Turneringer.Single(t => t.TurneringId == 1),
-                        context.Turneringer.Single(t => t.TurneringId == 2),
-                        context.Turneringer.Single(t => t.TurneringId == 3),
-                        context.Turneringer.Single(t => t.TurneringId == 4)
-                    }
+                    Navn = "Hold 4"
                 },
                 new Hold
                 {
                     HoldId = 5,
-                    Navn = "Køge",
-                    Turneringer = new List<Turnering>()
-                    {
-                        context.Turneringer.Single(t => t.TurneringId == 2),
-                        context.Turneringer.Single(t => t.TurneringId == 3),
-                    }
+                    Navn = "Hold 5"
+                },
+                new Hold
+                {
+                    HoldId = 6,
+                    Navn = "Hold 6"
+                },
+                new Hold
+                {
+                    HoldId = 7,
+                    Navn = "Hold 7"
+                },
+                new Hold
+                {
+                    HoldId = 8,
+                    Navn = "Hold 8"
                 }
             );
 
-            //context.HoldListe.AddOrUpdate(
-            //    new Hold
-            //    {
-            //        HoldId = 1,
-            //        Navn = "Dalby",
-            //        Turneringer = new List<Turnering>()
-            //        {
-            //            context.Turneringer.Single(t => t.TurneringId == 1),
-            //            context.Turneringer.Single(t => t.TurneringId == 3)
-            //        }
-            //    },
-            //    new Hold
-            //    {
-            //        HoldId = 2,
-            //        Navn = "Rønnede",
-            //        Turneringer = new List<Turnering>()
-            //        {
-            //            context.Turneringer.Single(t => t.TurneringId == 1)
-            //        }
-            //    },
-            //    new Hold
-            //    {
-            //        HoldId = 3,
-            //        Navn = "Faxe",
-            //        Turneringer = new List<Turnering>()
-            //        {
-            //            context.Turneringer.Single(t => t.TurneringId == 1)
-            //        }
-            //    },
-            //    new Hold
-            //    {
-            //        HoldId = 4,
-            //        Navn = "Haslev",
-            //        Turneringer = new List<Turnering>()
-            //        {
-            //            context.Turneringer.Single(t => t.TurneringId == 1)
-            //        }
-            //    }
-            //);
-            //context.SaveChanges();
-
-            //context.Runder.AddOrUpdate(
-            //    new Runde
-            //    {
-            //        RundeId = 1,
-            //        TurneringId = 1,
-            //        Betegnelse = "1ste Runde"
-            //    },
-            //    new Runde
-            //    {
-            //        RundeId = 2,
-            //        TurneringId = 1,
-            //        Betegnelse = "2. Runde"
-            //    }
-            //);
-            //context.SaveChanges();
-
-            //context.Kampe.AddOrUpdate(
-            //    new Kamp
-            //    {
-            //        KampId = 1,
-            //        HoldListe = new List<Hold>()
-            //        {
-            //            context.HoldListe.Single(h => h.HoldId == 1),
-            //            context.HoldListe.Single(h => h.HoldId == 2)
-            //        },
-            //        RundeId = 1
-            //    },
-            //    new Kamp
-            //    {
-            //        KampId = 2,
-            //        HoldListe = new List<Hold>()
-            //        {
-            //            context.HoldListe.Single(h => h.HoldId == 3),
-            //            context.HoldListe.Single(h => h.HoldId == 4)
-            //        },
-            //        RundeId = 1
-            //    }
-            //);
-            //context.SaveChanges();
+           
         }
     }
 }
