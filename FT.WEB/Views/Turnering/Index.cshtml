@@ -4,39 +4,19 @@
     ViewBag.Title = "Index";
 }
 
-<p>
-    <h2 class="text-center">Turneringer</h2>
-</p>
-<br />
 
-<p>
-    <h4>Vælg en turnering i listen nedenfor....</h4>
-</p>
 
-<table class="table table-dark table-striped table-bordered table-hover table-sm table-responsive-md">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Navn)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MaxAntalHold)
-        </th>
-    </tr>
-
+<div id="turneringsIndexListe">
     @foreach (var item in Model)
     {
-        <tr onclick="location.href='@(Url.Action("Details", "Turnering", new { id = item.TurneringId }))'">
-            <td>
-                @Html.DisplayFor(modelItem => item.Navn)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MaxAntalHold)
-            </td>
-        </tr>
+        <a id="turnering" href='@(Url.Action("Details", "Turnering", new { id = item.TurneringId }))'>
+            <i class="far fa-futbol"></i>
+            @Html.DisplayFor(modelItem => item.Navn)
+        </a>
     }
-</table>
-<br />
-<p>
-    @Html.ActionLink("Ny Turnering", "Create", null, new { @class="btn btn-primary" })
-</p>
+</div>
 
+<br /><br />
+<p>
+    @Html.ActionLink("Ny Turnering", "Create", null, new { @class = "btn btn-primary" })
+</p>
