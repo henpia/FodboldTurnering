@@ -4,31 +4,19 @@
     ViewBag.Title = "Index";
 }
 
-<p><h2 class="text-center">Hold</h2></p>
 
-<br />
-
-<p>
-    <h4>Vælg et hold i listen nedenfor....</h4>
-</p>
-
-<table class="table table-dark table-striped table-bordered table-hover table-sm table-responsive-md">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Navn)
-        </th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr onclick="location.href='@(Url.Action("Details", "Hold", new { id = item.HoldId }))'">
-        <td>
+<div id="holdIndexListe">
+    @foreach (var item in Model)
+    {
+        <a id="hold" href='@(Url.Action("Details", "Hold", new { id = item.HoldId }))'>
+            <i class="far fa-futbol"></i>
             @Html.DisplayFor(modelItem => item.Navn)
-        </td>
-    </tr>
-}
+        </a>
+    }
+</div>
 
-</table>
-
-<p>
-    @Html.ActionLink("Nyt Hold", "Create", null, new { @class = "btn btn-primary" })
-</p>
+<br /><br />
+<a class="btn btn-primary" href="@Url.Action("Create")">
+    <i class="fas fa-plus"></i>
+    Nyt Hold
+</a>

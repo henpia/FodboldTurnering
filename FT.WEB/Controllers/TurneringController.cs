@@ -86,7 +86,7 @@ namespace FT.WEB.Controllers
 
         public ActionResult Kampprogram(int? turneringsId)
         {
-            Turnering turnering = db.Turneringer.Include(h => h.HoldListe).Include(k => k.Kampe).Where(t => t.TurneringId == turneringsId).First();
+            Turnering turnering = db.Turneringer.Include(h => h.HoldListe).Include(k => k.Kampe).Include(h => h.HoldListe).Where(t => t.TurneringId == turneringsId).First();
             KampprogramViewModel viewModel = OpbygKampprogramViewModel(turnering);
             return View(viewModel);
         }
