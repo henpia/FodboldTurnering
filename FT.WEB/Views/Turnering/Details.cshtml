@@ -56,15 +56,13 @@
 @* Liste over Hold, der kan tilmeldes *@
 
 Klik på et hold nedenfor for at tilmelde det til <strong>@Model.Turnering.Navn</strong>:
-<br /><br />
-<table class="table table-dark table-striped table-bordered table-hover table-sm table-responsive-md">
+<br />
+<div id="ikkeTilmeldteHoldListe">
     @foreach (var hold in Model.IkkeTilmeldteHold)
     {
-        <tr onclick="location.href='@(Url.Action("TilmeldHold", "Turnering", new { turneringsId = Model.Turnering.TurneringId, holdId = hold.HoldId } ))'">
-            <td>
-                @hold.Navn
-            </td>
-        </tr>
+        <a id="ikkeTilmeldtHold" href="@Url.Action("TilmeldHold", "Turnering", new { turneringsId = Model.Turnering.TurneringId, holdId = hold.HoldId })">
+            <i class="fas fa-plus"></i>
+            @hold.Navn
+        </a>
     }
-</table>
-
+</div>
