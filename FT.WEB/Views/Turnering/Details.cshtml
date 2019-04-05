@@ -46,10 +46,19 @@
 
 
 @* Button: Start Turnering *@
-<p class="text-center">
-    @Html.ActionLink("START TURNERING", "StartTurnering", new { turneringsId = Model.Turnering.TurneringId }, new { @class = "btn btn-success" })
-</p>
+<div class="text-center">
+    <a id="buttonStartTurnering" href="@Url.Action("StartTurnering", "Turnering", new { turneringsId = Model.Turnering.TurneringId })">
+        START TURNERING
+    </a>
+</div>
 
+@*
+<div class="text-center">
+    <p id="buttonStartTurnering">
+        @Html.ActionLink("START TURNERING", "StartTurnering", new { turneringsId = Model.Turnering.TurneringId }, new { @class = "btn btn-success" })
+    </p>
+</div>
+*@
 <br /><br />
 
 

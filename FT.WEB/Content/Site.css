@@ -70,3 +70,19 @@ div .navbar-header .navbar-brand {
     text-decoration: none;
     width: 250px;
 }
+
+#buttonStartTurnering {
+    padding: 20px;
+    font-weight: 700;
+    color: #A8DB92;
+    background-color: #2D6E12;
+    text-decoration: none;
+}
+
+    #buttonStartTurnering:hover {
+        padding: 20px;
+        font-weight: 700;
+        background-color: #164900;
+        color: #A8DB92;
+        text-decoration: none;
+    }
