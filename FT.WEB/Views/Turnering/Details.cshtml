@@ -1,11 +1,6 @@
 ﻿@model FT.Entities.ViewModels.TurneringDetailsViewModel
 
-<br />
-<p>
-    @Html.ActionLink("Turneringer", "Index", null, new { @class = "btn btn-primary" })
-</p>
-
-<h2 class="text-center"><strong>@Model.Turnering.Navn</strong></h2>
+<br /><br />
 
 @Html.HiddenFor(model => model.Turnering.AabenForTilmelding)
 <div>
@@ -31,6 +26,8 @@
 
 <br />
 
+@* Tilmeldte Hold *@
+
 <p>
     Følgende hold er tilmeldt <strong>@Model.Turnering.Navn</strong>:
 </p>
@@ -47,12 +44,18 @@
     }
 </table>
 
+
+@* Button: Start Turnering *@
 <p class="text-center">
     @Html.ActionLink("START TURNERING", "StartTurnering", new { turneringsId = Model.Turnering.TurneringId }, new { @class = "btn btn-success" })
 </p>
 
 <br /><br />
-Vælg de hold, der skal tilmeldes <strong>@Model.Turnering.Navn</strong> nedenfor:
+
+
+@* Liste over Hold, der kan tilmeldes *@
+
+Klik på et hold nedenfor for at tilmelde det til <strong>@Model.Turnering.Navn</strong>:
 <br /><br />
 <table class="table table-dark table-striped table-bordered table-hover table-sm table-responsive-md">
     @foreach (var hold in Model.IkkeTilmeldteHold)
@@ -65,6 +68,3 @@ Vælg de hold, der skal tilmeldes <strong>@Model.Turnering.Navn</strong> nedenfo
     }
 </table>
 
-
-
-@*<tr onclick="location.href='@(Url.Action("TilmeldHold", "Turnering", new { turneringsId = Model.Turnering.TurneringId, holdId = hold.HoldId }))'">*@
