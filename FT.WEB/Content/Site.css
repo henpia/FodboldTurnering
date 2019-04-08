@@ -68,6 +68,19 @@ div .navbar-header .navbar-brand {
     width: 250px;
 }
 
+#turneringsDetaljer {
+    border: 1px solid lightgrey;
+    padding: 5px;
+}
+
+#buttonRetTurnering {
+    padding: 5px 10px;
+    margin-left: 5px;
+    color: white;
+    background-color: #2D6E12;
+    text-decoration: none;
+}
+
 #buttonStartTurnering {
     padding: 20px;
     font-weight: 700;
@@ -83,6 +96,7 @@ div .navbar-header .navbar-brand {
         color: #A8DB92;
         text-decoration: none;
     }
+
 
 #tilmeldteHoldListe {
     display: grid;

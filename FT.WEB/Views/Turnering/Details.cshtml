@@ -3,31 +3,23 @@
 <br /><br />
 
 @Html.HiddenFor(model => model.Turnering.AabenForTilmelding)
-<div>
-    <dl>
-        <dt>
-            @Html.DisplayNameFor(model => model.Turnering.Navn)
-        </dt>
-        <dd>
-            @Html.EditorFor(model => model.Turnering.Navn, new { htmlAttributes = new { @disabled = "disabled" } })
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Turnering.MaxAntalHold)
-        </dt>
-        <dd>
-            @Html.EditorFor(model => model.Turnering.MaxAntalHold, new { htmlAttributes = new { @disabled = "disabled" } })
-        </dd>
-    </dl>
+@* Stamoplysninger for turnering *@
+<div id="turneringsDetaljer">
+    @Html.DisplayNameFor(model => model.Turnering.Navn)
+    @Html.EditorFor(model => model.Turnering.Navn, new { htmlAttributes = new { @disabled = "disabled" } })
+    @Html.DisplayNameFor(model => model.Turnering.MaxAntalHold)
+    @Html.EditorFor(model => model.Turnering.MaxAntalHold, new { htmlAttributes = new { @disabled = "disabled" } })
+    <a id="buttonRetTurnering" href="@Url.Action("Edit", "Turnering", new { Id = Model.Turnering.TurneringId })">
+        <i class="far fa-edit"></i>
+        Ret
+    </a>
 </div>
-<p>
-    @Html.ActionLink("Ret", "Edit", new { id = Model.Turnering.TurneringId }, new { @class = "btn btn-primary" })
-</p>
 
-<br />
+
+<br /><br />
 
 @* Tilmeldte Hold *@
-
 <p>
     Følgende hold er tilmeldt <strong>@Model.Turnering.Navn</strong> (klik på et hold for at afmelde det igen):
 </p>
@@ -42,16 +34,6 @@
     }
 </div>
 
-@*<table class="table table-dark table-striped table-bordered table-hover table-sm table-responsive-md">
-    @foreach (var hold in Model.Turnering.HoldListe)
-    {
-        <tr onclick="location.href='@(Url.Action("AfmeldHold", "Turnering", new { turneringsId = Model.Turnering.TurneringId, holdId = hold.HoldId } ))'">
-            <td>
-                @Html.DisplayFor(modelItem => hold.Navn)
-            </td>
-        </tr>
-    }
-</table>*@
 
 <br /><br />
 
@@ -67,7 +49,6 @@
 
 
 @* Liste over Hold, der kan tilmeldes *@
-
 <p>Klik på et hold nedenfor for at tilmelde det til <strong>@Model.Turnering.Navn</strong>:</p>
 <div id="ikkeTilmeldteHoldListe">
     @foreach (var hold in Model.IkkeTilmeldteHold)
