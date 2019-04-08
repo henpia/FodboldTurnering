@@ -68,9 +68,11 @@ div .navbar-header .navbar-brand {
     width: 250px;
 }
 
-#turneringsDetaljer {
-    border: 1px solid lightgrey;
-    padding: 5px;
+#turneringsDetaljer, 
+#ikkeTilmeldteHoldListe,
+#tilmeldteHoldListe {
+    border: 1px solid grey;
+    padding: 10px;
 }
 
 #buttonRetTurnering {
