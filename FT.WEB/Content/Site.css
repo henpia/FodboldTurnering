@@ -29,7 +29,6 @@ div .navbar-header .navbar-brand {
 
 #turneringsIndexListe, 
 #holdIndexListe {
-    /*background-color: seagreen;*/
     margin-top: 4rem;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -51,8 +50,6 @@ div .navbar-header .navbar-brand {
 }
 
 #ikkeTilmeldteHoldListe {
-    /*background-color: seagreen;*/
-    /*margin-top: 4rem;*/
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-row-gap: 30px;
@@ -86,3 +83,22 @@ div .navbar-header .navbar-brand {
         color: #A8DB92;
         text-decoration: none;
     }
+
+#tilmeldteHoldListe {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+    grid-row-gap: 30px;
+    justify-items: center;
+}
+
+#tilmeldtHold {
+    margin: 5px;
+    padding: 1rem;
+    border: 2px solid black;
+    color: black;
+    text-align: center;
+    font-size: x-large;
+    font-weight: 700;
+    text-decoration: none;
+    width: 250px;
+}

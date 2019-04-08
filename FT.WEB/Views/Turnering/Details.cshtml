@@ -29,11 +29,20 @@
 @* Tilmeldte Hold *@
 
 <p>
-    Følgende hold er tilmeldt <strong>@Model.Turnering.Navn</strong>:
+    Følgende hold er tilmeldt <strong>@Model.Turnering.Navn</strong> (klik på et hold for at afmelde det igen):
 </p>
 
+<div id="tilmeldteHoldListe">
+    @foreach (var hold in Model.Turnering.HoldListe)
+    {
+        <a id="tilmeldtHold" href="@Url.Action("AfmeldHold","Turnering", new { turneringsId = Model.Turnering.TurneringId, holdId = hold.HoldId })">
+            <i class="fas fa-minus"></i>
+            @hold.Navn
+        </a>
+    }
+</div>
 
-<table class="table table-dark table-striped table-bordered table-hover table-sm table-responsive-md">
+@*<table class="table table-dark table-striped table-bordered table-hover table-sm table-responsive-md">
     @foreach (var hold in Model.Turnering.HoldListe)
     {
         <tr onclick="location.href='@(Url.Action("AfmeldHold", "Turnering", new { turneringsId = Model.Turnering.TurneringId, holdId = hold.HoldId } ))'">
@@ -42,7 +51,9 @@
             </td>
         </tr>
     }
-</table>
+</table>*@
+
+<br /><br />
 
 
 @* Button: Start Turnering *@
@@ -52,20 +63,12 @@
     </a>
 </div>
 
-@*
-<div class="text-center">
-    <p id="buttonStartTurnering">
-        @Html.ActionLink("START TURNERING", "StartTurnering", new { turneringsId = Model.Turnering.TurneringId }, new { @class = "btn btn-success" })
-    </p>
-</div>
-*@
 <br /><br />
 
 
 @* Liste over Hold, der kan tilmeldes *@
 
-Klik på et hold nedenfor for at tilmelde det til <strong>@Model.Turnering.Navn</strong>:
-<br />
+<p>Klik på et hold nedenfor for at tilmelde det til <strong>@Model.Turnering.Navn</strong>:</p>
 <div id="ikkeTilmeldteHoldListe">
     @foreach (var hold in Model.IkkeTilmeldteHold)
     {
