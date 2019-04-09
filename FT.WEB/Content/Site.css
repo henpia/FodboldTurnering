@@ -27,8 +27,8 @@ div .navbar-header .navbar-brand {
     font-size: 2.5rem;
 }
 
-#turneringsIndexListe, #holdIndexListe {
-    /*background-color: seagreen;*/
+#turneringsIndexListe, 
+#holdIndexListe {
     margin-top: 4rem;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -36,7 +36,8 @@ div .navbar-header .navbar-brand {
     justify-items: center;
 }
 
-#turnering, #hold {
+#turnering, 
+#hold {
     margin: 5px;
     padding: 1rem;
     border: 2px solid black;
@@ -46,4 +47,75 @@ div .navbar-header .navbar-brand {
     font-weight: 700;
     text-decoration: none;
     width: 350px;
+}
+
+#ikkeTilmeldteHoldListe {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-row-gap: 30px;
+    justify-items: center;
+}
+
+#ikkeTilmeldtHold {
+    margin: 5px;
+    padding: 1rem;
+    border: 2px solid black;
+    color: black;
+    text-align: center;
+    font-size: x-large;
+    font-weight: 700;
+    text-decoration: none;
+    width: 250px;
+}
+
+#turneringsDetaljer, 
+#ikkeTilmeldteHoldListe,
+#tilmeldteHoldListe {
+    border: 1px solid grey;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+#buttonRetTurnering {
+    padding: 5px 10px;
+    margin-left: 5px;
+    color: white;
+    background-color: #2D6E12;
+    text-decoration: none;
+}
+
+#buttonStartTurnering {
+    padding: 20px;
+    font-weight: 700;
+    color: #A8DB92;
+    background-color: #2D6E12;
+    text-decoration: none;
+}
+
+    #buttonStartTurnering:hover {
+        padding: 20px;
+        font-weight: 700;
+        background-color: #164900;
+        color: #A8DB92;
+        text-decoration: none;
+    }
+
+
+#tilmeldteHoldListe {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+    grid-row-gap: 30px;
+    justify-items: center;
+}
+
+#tilmeldtHold {
+    margin: 5px;
+    padding: 1rem;
+    border: 2px solid black;
+    color: black;
+    text-align: center;
+    font-size: x-large;
+    font-weight: 700;
+    text-decoration: none;
+    width: 250px;
 }

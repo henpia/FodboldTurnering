@@ -1,70 +1,61 @@
 ﻿@model FT.Entities.ViewModels.TurneringDetailsViewModel
 
-<br />
-<p>
-    @Html.ActionLink("Turneringer", "Index", null, new { @class = "btn btn-primary" })
-</p>
-
-<h2 class="text-center"><strong>@Model.Turnering.Navn</strong></h2>
+<br /><br />
 
 @Html.HiddenFor(model => model.Turnering.AabenForTilmelding)
-<div>
-    <dl>
-        <dt>
-            @Html.DisplayNameFor(model => model.Turnering.Navn)
-        </dt>
-        <dd>
-            @Html.EditorFor(model => model.Turnering.Navn, new { htmlAttributes = new { @disabled = "disabled" } })
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Turnering.MaxAntalHold)
-        </dt>
-        <dd>
-            @Html.EditorFor(model => model.Turnering.MaxAntalHold, new { htmlAttributes = new { @disabled = "disabled" } })
-        </dd>
-    </dl>
+@* Stamoplysninger for turnering *@
+<div id="turneringsDetaljer">
+    @Html.DisplayNameFor(model => model.Turnering.Navn)
+    @Html.EditorFor(model => model.Turnering.Navn, new { htmlAttributes = new { @disabled = "disabled" } })
+    @Html.DisplayNameFor(model => model.Turnering.MaxAntalHold)
+    @Html.EditorFor(model => model.Turnering.MaxAntalHold, new { htmlAttributes = new { @disabled = "disabled" } })
+    <a id="buttonRetTurnering" href="@Url.Action("Edit", "Turnering", new { Id = Model.Turnering.TurneringId })">
+        <i class="far fa-edit"></i>
+        Ret
+    </a>
 </div>
+
+
+<br /><br />
+
+@* Tilmeldte Hold *@
 <p>
-    @Html.ActionLink("Ret", "Edit", new { id = Model.Turnering.TurneringId }, new { @class = "btn btn-primary" })
+    Følgende hold er tilmeldt <strong>@Model.Turnering.Navn</strong> (klik på et hold for at afmelde det igen):
 </p>
 
-<br />
-
-<p>
-    Følgende hold er tilmeldt <strong>@Model.Turnering.Navn</strong>:
-</p>
-
-
-<table class="table table-dark table-striped table-bordered table-hover table-sm table-responsive-md">
+<div id="tilmeldteHoldListe">
     @foreach (var hold in Model.Turnering.HoldListe)
     {
-        <tr onclick="location.href='@(Url.Action("AfmeldHold", "Turnering", new { turneringsId = Model.Turnering.TurneringId, holdId = hold.HoldId } ))'">
-            <td>
-                @Html.DisplayFor(modelItem => hold.Navn)
-            </td>
-        </tr>
+        <a id="tilmeldtHold" href="@Url.Action("AfmeldHold","Turnering", new { turneringsId = Model.Turnering.TurneringId, holdId = hold.HoldId })">
+            <i class="fas fa-minus"></i>
+            @hold.Navn
+        </a>
     }
-</table>
+</div>
 
-<p class="text-center">
-    @Html.ActionLink("START TURNERING", "StartTurnering", new { turneringsId = Model.Turnering.TurneringId }, new { @class = "btn btn-success" })
-</p>
 
 <br /><br />
-Vælg de hold, der skal tilmeldes <strong>@Model.Turnering.Navn</strong> nedenfor:
+
+
+@* Button: Start Turnering *@
+<div class="text-center">
+    <a id="buttonStartTurnering" href="@Url.Action("StartTurnering", "Turnering", new { turneringsId = Model.Turnering.TurneringId })">
+        START TURNERING
+    </a>
+</div>
+
 <br /><br />
-<table class="table table-dark table-striped table-bordered table-hover table-sm table-responsive-md">
+
+
+@* Liste over Hold, der kan tilmeldes *@
+<p>Klik på et hold nedenfor for at tilmelde det til <strong>@Model.Turnering.Navn</strong>:</p>
+<div id="ikkeTilmeldteHoldListe">
     @foreach (var hold in Model.IkkeTilmeldteHold)
     {
-        <tr onclick="location.href='@(Url.Action("TilmeldHold", "Turnering", new { turneringsId = Model.Turnering.TurneringId, holdId = hold.HoldId } ))'">
-            <td>
-                @hold.Navn
-            </td>
-        </tr>
+        <a id="ikkeTilmeldtHold" href="@Url.Action("TilmeldHold", "Turnering", new { turneringsId = Model.Turnering.TurneringId, holdId = hold.HoldId })">
+            <i class="fas fa-plus"></i>
+            @hold.Navn
+        </a>
     }
-</table>
-
-
-
-@*<tr onclick="location.href='@(Url.Action("TilmeldHold", "Turnering", new { turneringsId = Model.Turnering.TurneringId, holdId = hold.HoldId }))'">*@
+</div>

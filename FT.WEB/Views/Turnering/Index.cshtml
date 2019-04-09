@@ -17,6 +17,16 @@
 </div>
 
 <br /><br />
-<p>
-    @Html.ActionLink("Ny Turnering", "Create", null, new { @class = "btn btn-primary" })
-</p>
+
+<div class="text-center">
+    <a class="btn btn-primary" href="@Url.Action("Create")">
+        <i class="fas fa-plus"></i>
+        Ny Turnering
+    </a>
+</div>
+
+@*
+    <p>
+        @Html.ActionLink("Ny Turnering", "Create", null, new { @class = "btn btn-primary" })
+    </p>
+*@
