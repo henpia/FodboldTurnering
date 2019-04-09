@@ -73,6 +73,7 @@ div .navbar-header .navbar-brand {
 #tilmeldteHoldListe {
     border: 1px solid grey;
     padding: 10px;
+    margin-bottom: 20px;
 }
 
 #buttonRetTurnering {
