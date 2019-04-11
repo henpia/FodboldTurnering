@@ -4,39 +4,32 @@
     ViewBag.Title = "Details";
 }
 
-<p>
-    <h2 class="text-center">Information om @Model.Navn</h2>
-</p>
+<br /><br />
 
-<div>
-    <hr />
-    <dl>
-        <dt>
-            @Html.DisplayNameFor(model => model.Navn)
-        </dt>
-
-        <dd>
-            @Html.EditorFor(model => model.Navn, new { htmlAttributes = new { @disabled = "disabled" } })
-        </dd>
-    </dl>
-    @Html.ActionLink("Ret", "Edit", new { id = Model.HoldId }, new { @class = "btn btn-primary" })
+@* Stamoplysninger for Hold *@
+<div id="holdDetaljer">
+    @Html.DisplayNameFor(model => model.Navn)
+    @Html.EditorFor(model => model.Navn, new { htmlAttributes = new { @disabled = "dissabled" } })
+    <a id="buttonRetHold" href="@Url.Action("Edit", "Hold", new { Id = Model.HoldId })">
+        <i class="far fa-edit"></i>
+        Ret
+    </a>
 </div>
+
 
 <br />
 
+@* Liste over turneringer som holdet er tilmeldt *@
 <p>
-    @Model.Navn er tilmeldt:
+    <strong>@Model.Navn</strong> er tilmeldt:
 </p>
 
-<table class="table table-dark table-striped table-bordered table-hover table-sm table-responsive-md">
+<div id="listeHoldTilmeldtTilTurneringer">
     @foreach (var turnering in Model.Turneringer)
     {
-        <tr>
-            <td>@turnering.Navn</td>
-        </tr>
+        <div id="tilmeldtTurnering">
+            @turnering.Navn
+        </div>
     }
-</table>
+</div>
 
-<p class="text-center">
-    @Html.ActionLink("Holdoversigt", "Index", null, new { @class = "btn btn-primary" })
-</p>
