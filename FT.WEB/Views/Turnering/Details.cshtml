@@ -24,10 +24,10 @@
     Følgende hold er tilmeldt <strong>@Model.Turnering.Navn</strong> (klik på et hold for at afmelde det igen):
 </p>
 
-<div id="tilmeldteHoldListe">
+<div class="tilmeldteHoldListe">
     @foreach (var hold in Model.Turnering.HoldListe)
     {
-        <a id="tilmeldtHold" href="@Url.Action("AfmeldHold","Turnering", new { turneringsId = Model.Turnering.TurneringId, holdId = hold.HoldId })">
+        <a class="tilmeldtHold" href="@Url.Action("AfmeldHold","Turnering", new { turneringsId = Model.Turnering.TurneringId, holdId = hold.HoldId })">
             <i class="fas fa-minus"></i>
             @hold.Navn
         </a>

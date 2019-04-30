@@ -4,18 +4,35 @@
     ViewBag.Title = "Kampprogram";
 }
 <p>
-    <h2 class="text-center">Kampprogram for @Model.TurneringsNavn</h2>
+    <h2>KAMPPROGRAM</h2>
+    <h3>@Model.TurneringsNavn</h3>
 </p>
 
 
 @* Liste over hold tilmeldt turneringen *@
-<p>
-    Følgende hold er tilmeldt @Model.TurneringsNavn
-</p>
+<div class="tilmeldteHoldListe">
+    @foreach (var hold in Model.HoldTilmeldtTurnering)
+    {
+        <div class="tilmeldtHold">
+            @Html.DisplayFor(model => hold.Navn)
+        </div>
+    }
+</div>
 
-@foreach (var hold in Model.HoldTilmeldtTurnering)
-{
-    <div class="row">
-        @Html.DisplayFor(model => hold.Navn)
-    </div>
-}
+<br /><br />
+
+@*<div id="listeKampe">*@
+    @foreach (var kamp in Model.Kampe)
+    {
+        <div id="listeKampe">
+            &nbsp;&nbsp;@kamp.TurneringsRunde. Runde
+            <div>
+                <span id="hjemmeHold">@Html.DisplayFor(model => kamp.HoldListe.ElementAt(0).Navn)</span>
+                @Html.EditorFor(model => kamp.ScoreHjemmeHold)
+                &nbsp;-&nbsp;
+                @Html.EditorFor(model => kamp.ScoreUdeHold)
+                <span id="udeHold">@Html.DisplayFor(model => kamp.HoldListe.ElementAt(1).Navn)</span>
+            </div>
+        </div>
+    }
+@*</div>*@
