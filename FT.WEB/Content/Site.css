@@ -107,7 +107,7 @@ p {
     }
 
 
-#tilmeldteHoldListe,
+.tilmeldteHoldListe,
 #listeHoldTilmeldtTilTurneringer  {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
@@ -115,7 +115,7 @@ p {
     justify-items: center;
 }
 
-#tilmeldtHold,
+.tilmeldtHold,
 #tilmeldtTurnering {
     margin: 5px;
     padding: 1rem;
@@ -126,4 +126,40 @@ p {
     font-weight: 700;
     text-decoration: none;
     width: 250px;
+}
+
+h2,
+h3 {
+    text-align: center;
+}
+
+#hjemmeHold,
+#udeHold {
+    display: inline-block;
+    margin: 5px;
+    width: 150px;
+}
+
+#udeHold {
+    text-align: left;
+}
+
+#hjemmeHold {
+    text-align: right;
+}
+
+#listeKampe {
+    display: grid;
+    grid-template-columns: 1fr;
+    text-align: center;
+    width: 50%;
+    margin: 15px auto;
+    border-top: 1px solid black;
+}
+
+#listeKampe input {
+    width: 40px;
+    text-align: center;
+    padding: 0;
+    width: 30px;
 }

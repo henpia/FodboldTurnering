@@ -11,6 +11,7 @@ namespace FT.Entities.Models
     public class Hold
     {
         public int HoldId { get; set; }
+        [StringLength(50,MinimumLength =2)]
         public string Navn { get; set; }
         public ICollection<Turnering> Turneringer { get; set; }
         public ICollection<Kamp> Kampe { get; set; }

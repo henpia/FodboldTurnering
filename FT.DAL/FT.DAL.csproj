@@ -78,6 +78,10 @@
     <Compile Include="Migrations\201903271538575_Initial.Designer.cs">
       <DependentUpon>201903271538575_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904291229345_HoldNavnLaengde.cs" />
+    <Compile Include="Migrations\201904291229345_HoldNavnLaengde.Designer.cs">
+      <DependentUpon>201904291229345_HoldNavnLaengde.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="Repositories\Configuration.old" />
@@ -101,6 +105,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201903271538575_Initial.resx">
       <DependentUpon>201903271538575_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904291229345_HoldNavnLaengde.resx">
+      <DependentUpon>201904291229345_HoldNavnLaengde.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
