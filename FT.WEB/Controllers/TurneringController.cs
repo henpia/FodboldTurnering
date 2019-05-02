@@ -84,10 +84,21 @@ namespace FT.WEB.Controllers
             db.SaveChanges();
         }
 
-        public ActionResult Kampprogram(int? turneringsId = 1)
+        public ActionResult Kampprogram(int? turneringsId = 0)
         {
-            // Turnering turnering = db.Turneringer.Include(h => h.HoldListe).Include(k => k.Kampe).Include(h => h.HoldListe).Where(t => t.TurneringId == turneringsId).First();
-            Turnering turnering = db.Turneringer.Include(h => h.HoldListe).Where(t => t.TurneringId == turneringsId).First();
+            var turnering = new Turnering();
+            if (turneringsId == 0)
+            {
+                // Hvis der ikke er valgt nogen turnering, så vælg den første
+                turnering = db.Turneringer.Include(h => h.HoldListe).First();
+                // for at finde kampe nedenfor sættes turneringsId til 
+                // den første turnering, der blev fundet ovenfor
+                turneringsId = turnering.TurneringId;
+            } else
+            {
+                turnering = db.Turneringer.Include(h => h.HoldListe).Where(t => t.TurneringId == turneringsId).First();
+            }
+            
             ICollection<Kamp> kampe = db.Kampe.Include(h => h.HoldListe).Where(t => t.TurneringId == turneringsId).ToList();
             turnering.Kampe = kampe;
             KampprogramViewModel viewModel = OpbygKampprogramViewModel(turnering);
