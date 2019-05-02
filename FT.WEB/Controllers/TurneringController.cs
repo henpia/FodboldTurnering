@@ -54,6 +54,11 @@ namespace FT.WEB.Controllers
             // REPOSITORY !!!
             Turnering turnering = db.Turneringer.Include(h => h.HoldListe).Where(t => t.TurneringId == turneringsId).First();
 
+            if (turnering.HoldListe.Count < 2)
+            {
+                return RedirectToAction("Details", new { id = turnering.TurneringId });
+            }
+
             LukForTilmeldinger(turnering);
 
             UdregnKampprogram(turnering);
