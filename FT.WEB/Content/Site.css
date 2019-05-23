@@ -176,7 +176,7 @@ p {
 
 
 .tilmeldteHoldListe,
-#listeHoldTilmeldtTilTurneringer  {
+#listeHoldTilmeldtTilTurneringer {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
     grid-row-gap: 30px;
@@ -194,6 +194,7 @@ p {
     font-weight: 700;
     text-decoration: none;
     width: 250px;
+    background: rgba( 78, 146, 49, 0.6);
 }
 
 h2,
@@ -219,10 +220,12 @@ h3 {
 #listeKampe {
     display: grid;
     grid-template-columns: 1fr;
+    color: white;
     text-align: center;
     width: 50%;
     margin: 15px auto;
     border-top: 1px solid black;
+    background: rgba( 78, 146, 49, 0.6);
 }
 
 #listeKampe input {
