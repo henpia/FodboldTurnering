@@ -3,15 +3,18 @@
 }
 
 <div class="jumbotron">
-    <h1>Fodbold Turnering</h1>
-    <p class="lead">Hold styr på dine fodbold turneringer her! Opret turneringer, tilmeld hold og lad os udregne kampprogrammet for dig.</p>
+    <h1>FODBOLD TURNERING</h1>
+    <p class="lead">
+        Hold styr på dine fodbold turneringer her! <br /> 
+        Opret turneringer, tilmeld hold og lad os udregne kampprogrammet for dig.
+    </p>
     <p>
         @Html.ActionLink("NY TURNERING", "Create", "Turnering", null, new { @class = "btn btn-primary" })
     </p>
 </div>
 
-<div class="row">
-    <div class="col-md-4">
+<div class="features">
+    <div class="feature">
         <h2>Hold</h2>
         <p>
             Se, hvilke hold er tilmeldt en turnering eller tilmeld et nyt.
@@ -20,18 +23,18 @@
             @Html.ActionLink("HOLD", "Index", "Hold", null, new { @class= "btn btn-primary" })
         </p>
     </div>
-    <div class="col-md-4">
-        <h2>Kampe</h2>
-        <p>Se resultaterne af de enkelte kampe og indberet nye resultater.</p>
+    <div class="feature">
+        <h2>Kampprogram</h2>
+        <p>Se kampprogrammet for en turnering!</p>
         <p>
-            @Html.ActionLink("KAMPE", "Index", "Kamp", null, new { @class = "btn btn-primary" })
+            @Html.ActionLink("KAMPPROGRAM", "Kampprogram", "Turnering", null, new { @class = "btn btn-primary" })
         </p>
     </div>
-    <div class="col-md-4">
-        <h2>Kampprogram / Stilling</h2>
-        <p>Se kampprogrammet, de enkelte runder og stillingen!</p>
+    <div class="feature">
+        <h2>Stilling</h2>
+        <p>Se stillingen i en turnering.</p>
         <p>
-            @Html.ActionLink("KAMPPROGRAM", "Index", "Runde", null, new { @class = "btn btn-primary" })
+            @Html.ActionLink("STILLING", "Stilling", "Turnering", null, new { @class = "btn btn-primary" })
         </p>
     </div>
 </div>

@@ -32,10 +32,11 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
-            <div id="footer">&copy; @DateTime.Now.Year - Udviklet af <a href="https://henpia.dk" target="_new"> Henrik Christiansen</a></div>
-        </footer>
     </div>
+
+    <footer>
+        <div id="footer">&copy; @DateTime.Now.Year - Udviklet af <a href="https://henpia.dk" target="_new"> Henrik Christiansen</a></div>
+    </footer>
 
     @Scripts.Render("~/bundles/jquery")"
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
