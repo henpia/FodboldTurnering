@@ -107,7 +107,7 @@ p {
     justify-items: center;
 }
 
-#turnering, 
+#turnering,
 #hold {
     margin: 5px;
     padding: 1rem;
@@ -118,6 +118,7 @@ p {
     font-weight: 700;
     text-decoration: none;
     width: 350px;
+    background: rgba( 78, 146, 49, 0.6);
 }
 
 #ikkeTilmeldteHoldListe {
