@@ -98,6 +98,14 @@ p {
     font-size: 20px;
 }
 
+.text {
+    display: inline-block;
+    color: white;
+    font-weight: 600;
+    background-color: rgba( 78, 146, 49, 0.4);
+    /*background-color: rgba( 255, 255, 255, 0.3);*/
+}
+
 #turneringsIndexListe, 
 #holdIndexListe {
     margin-top: 4rem;
@@ -128,7 +136,9 @@ p {
     justify-items: center;
 }
 
-#ikkeTilmeldtHold {
+.tilmeldtHold,
+.ikkeTilmeldtHold,
+#tilmeldtTurnering {
     margin: 5px;
     padding: 1rem;
     border: 2px solid black;
@@ -138,13 +148,27 @@ p {
     font-weight: 700;
     text-decoration: none;
     width: 250px;
+    background: rgba( 78, 146, 49, 0.6);
 }
 
-#turneringsDetaljer, 
-#ikkeTilmeldteHoldListe,
+.tilmeldtHold:hover,
+.ikkeTilmeldtHold:hover,
+#tilmeldtTurnering:hover {
+    text-decoration: none;
+    color: white;
+}
+
+
+#turneringsDetaljer,
 #tilmeldteHoldListe,
 #holdDetaljer {
     border: 1px solid grey;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.borderListe {
+    border: 2px solid grey;
     padding: 10px;
     margin-bottom: 20px;
 }
@@ -183,19 +207,7 @@ p {
     justify-items: center;
 }
 
-.tilmeldtHold,
-#tilmeldtTurnering {
-    margin: 5px;
-    padding: 1rem;
-    border: 2px solid black;
-    color: black;
-    text-align: center;
-    font-size: x-large;
-    font-weight: 700;
-    text-decoration: none;
-    width: 250px;
-    background: rgba( 78, 146, 49, 0.6);
-}
+
 
 h2,
 h3 {

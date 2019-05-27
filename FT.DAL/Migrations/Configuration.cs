@@ -24,35 +24,35 @@ namespace FT.DAL.Migrations
                 new Turnering
                 {
                     TurneringId = 1,
-                    Navn = "Turnering 1",
+                    Navn = "Champions",
                     MaxAntalHold = 4,
                     AabenForTilmelding = true
                 },
                 new Turnering
                 {
                     TurneringId = 2,
-                    Navn = "Turnering 2",
+                    Navn = "The Greatest",
                     MaxAntalHold = 5,
                     AabenForTilmelding = true
                 },
                 new Turnering
                 {
                     TurneringId = 3,
-                    Navn = "Turnering 3",
+                    Navn = "League of Excellence",
                     MaxAntalHold = 6,
                     AabenForTilmelding = true
                 },
                 new Turnering
                 {
                     TurneringId = 4,
-                    Navn = "Turnering 4",
+                    Navn = "Final Round",
                     MaxAntalHold = 7,
                     AabenForTilmelding = true
                 },
                 new Turnering
                 {
                     TurneringId = 5,
-                    Navn = "Turnering 5",
+                    Navn = "The Golden League",
                     MaxAntalHold = 8,
                     AabenForTilmelding = true
                 }
@@ -63,42 +63,42 @@ namespace FT.DAL.Migrations
                 new Hold
                 {
                     HoldId = 1,
-                    Navn = "Hold 1"
+                    Navn = "Barcelona"
                 },
                 new Hold
                 {
                     HoldId = 2,
-                    Navn = "Hold 2"
+                    Navn = "Real Madrid"
                 },
                 new Hold
                 {
                     HoldId = 3,
-                    Navn = "Hold 3"
+                    Navn = "Juventus"
                 },
                 new Hold
                 {
                     HoldId = 4,
-                    Navn = "Hold 4"
+                    Navn = "Milan"
                 },
                 new Hold
                 {
                     HoldId = 5,
-                    Navn = "Hold 5"
+                    Navn = "Inter"
                 },
                 new Hold
                 {
                     HoldId = 6,
-                    Navn = "Hold 6"
+                    Navn = "Bayern Munchen"
                 },
                 new Hold
                 {
                     HoldId = 7,
-                    Navn = "Hold 7"
+                    Navn = "Liverpool"
                 },
                 new Hold
                 {
                     HoldId = 8,
-                    Navn = "Hold 8"
+                    Navn = "Manchester United"
                 }
             );
 

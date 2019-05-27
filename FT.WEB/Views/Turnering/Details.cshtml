@@ -20,18 +20,20 @@
 <br /><br />
 
 @* Tilmeldte Hold *@
-<p>
-    Følgende hold er tilmeldt <strong>@Model.Turnering.Navn</strong> (klik på et hold for at afmelde det igen):
-</p>
+<div class="borderListe">
+    <p class="text">
+        Følgende hold er tilmeldt <strong>@Model.Turnering.Navn</strong> (klik på et hold for at afmelde det igen):
+    </p>
 
-<div class="tilmeldteHoldListe">
-    @foreach (var hold in Model.Turnering.HoldListe)
-    {
-        <a class="tilmeldtHold" href="@Url.Action("AfmeldHold","Turnering", new { turneringsId = Model.Turnering.TurneringId, holdId = hold.HoldId })">
-            <i class="fas fa-minus"></i>
-            @hold.Navn
-        </a>
-    }
+    <div class="tilmeldteHoldListe">
+        @foreach (var hold in Model.Turnering.HoldListe)
+        {
+            <a class="tilmeldtHold" href="@Url.Action("AfmeldHold","Turnering", new { turneringsId = Model.Turnering.TurneringId, holdId = hold.HoldId })">
+                <i class="fas fa-minus"></i>
+                @hold.Navn
+            </a>
+        }
+    </div>
 </div>
 
 
@@ -49,13 +51,15 @@
 
 
 @* Liste over Hold, der kan tilmeldes *@
-<p>Klik på et hold nedenfor for at tilmelde det til <strong>@Model.Turnering.Navn</strong>:</p>
-<div id="ikkeTilmeldteHoldListe">
-    @foreach (var hold in Model.IkkeTilmeldteHold)
-    {
-        <a id="ikkeTilmeldtHold" href="@Url.Action("TilmeldHold", "Turnering", new { turneringsId = Model.Turnering.TurneringId, holdId = hold.HoldId })">
-            <i class="fas fa-plus"></i>
-            @hold.Navn
-        </a>
-    }
+<div class="borderListe">
+    <p class="text">Klik på et hold nedenfor for at tilmelde det til <strong>@Model.Turnering.Navn</strong>:</p>
+    <div id="ikkeTilmeldteHoldListe">
+        @foreach (var hold in Model.IkkeTilmeldteHold)
+        {
+            <a class="ikkeTilmeldtHold" href="@Url.Action("TilmeldHold", "Turnering", new { turneringsId = Model.Turnering.TurneringId, holdId = hold.HoldId })">
+                <i class="fas fa-plus"></i>
+                @hold.Navn
+            </a>
+        }
+    </div>
 </div>

@@ -40,7 +40,8 @@ namespace FT.WEB.Controllers
                 return HttpNotFound();
             }
 
-            if (turnering.HoldListe.Count >= turnering.MaxAntalHold || turnering.AabenForTilmelding == false)
+            // if (turnering.HoldListe.Count >= turnering.MaxAntalHold || turnering.AabenForTilmelding == false)
+            if (turnering.AabenForTilmelding == false)
             {
                 return RedirectToAction("Kampprogram", new { turneringsId = turnering.TurneringId });
             }
